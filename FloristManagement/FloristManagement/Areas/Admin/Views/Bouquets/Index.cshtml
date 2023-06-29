@@ -1,0 +1,134 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<FloristManagement.Models.Bouquet>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+    var grid = new WebGrid(Model, rowsPerPage: Model.PageSize, canPage: true);
+}
+
+<style>
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            display: block;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+            text-decoration: none;
+        }
+
+            .pagination a:hover {
+                background-color: #f5f5f5;
+            }
+
+        .pagination .disabled a,
+        .pagination .disabled a:hover {
+            color: #ccc;
+            background-color: #fff;
+            border-color: #ccc;
+            cursor: default;
+        }
+</style>
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- [ breadcrumb ] start -->
+        <main class="app-content">
+            <div class="app-title">
+                <ul class="app-breadcrumb breadcrumb side">
+                    <li class="breadcrumb-item active"><a href="#"><b>List of bouquets</b></a></li>
+                </ul>
+                <div id="clock"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tile">
+                        <div class="tile-body">
+                            <div class="row element-button">
+                                <div class="col-sm-3">
+                                    <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()">
+                                        <i class="fas fa-print"></i> In dữ liệu
+                                    </a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép">
+                                        <i class="fas fa-copy"></i> Sao chép
+                                    </a>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <a href="@Url.Action("ImportExcel")" class="btn btn-excel btn-sm" href="" title="In"><i class="fas fa-file-excel"></i> Import CSV</a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a href="@Url.Action("ExportExcel")" class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)">
+                                        <i class="fas fa-file-pdf"></i>
+                                        Export Excel
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="grid">
+                                @grid.GetHtml(tableStyle: "table table-hover",
+                                headerStyle: "table-header",
+                                alternatingRowStyle: "table-row-alternating",
+                                columns: grid.Columns(
+                                    grid.Column("BouquetID", "ID"),
+                                    grid.Column("Name", "Name"),
+                                    grid.Column("Description", "Description"),
+                                    grid.Column("Brand", "Bransd"),
+                                    grid.Column("Price", "Price", format: @<text>$ @item.Price</text>),
+/*                                    grid.Column("Occasion.Name", "Occasion"),
+*/                                    grid.Column("Image", format: (item) =>
+{
+if (item.ImagePath != null)
+{
+return new HtmlString("<img width='100' src='" + Url.Content(item.ImagePath) + "' />");
+}
+else
+{
+return new HtmlString("");
+}
+}),
+grid.Column(
+format: @<a href="@Url.Action("Edit", "Bouquets", new { id = item.BouquetID })">Edit</a>
+),
+grid.Column(
+format: @<a href="@Url.Action("Delete", "Bouquets", new { id = item.BouquetID })">Delete</a>
+
+)
+
+)
+)
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- [ Main Content ] end -->
+    </div>
+</div>
+
+<p>
+    <button class="btn btn-default">
+        @Html.ActionLink("Create New", "Create")
+    </button>
+</p>
+

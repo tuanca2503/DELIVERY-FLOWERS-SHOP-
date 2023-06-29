@@ -1,0 +1,211 @@
+﻿@model FloristManagement.Models.OrderViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Random rand = new Random();
+    int orderNumber = rand.Next(100, 1000);
+    string OrderNumber = orderNumber.ToString();
+    int currentYear = DateTime.Now.Year;
+    string CurrentYear = currentYear.ToString();
+    string OrderID = CurrentYear + orderNumber;
+    int orderId = Convert.ToInt32(OrderID);
+}
+
+
+@{
+    ViewBag.Title = "checkout";
+}
+
+<main>
+    <link href="~/Content/Root/CSS/checkout/app.desktop.en-gb.css" rel="stylesheet" />
+
+    <div class="l-page">
+        <div role="banner">
+            <h1 style="text-align: center; padding: 20px; font-size: 3em;">Checkout</h1>
+        </div>
+        <div role="main" class="with-min-height main-co con-co" style="min-height: 547px;">
+            <div class="l-lc is-card-animator" data-bind="directChildRevealAnimator: true" style="padding-right:0.625rem">
+                @using (Html.BeginForm("Checkout", "Order"))
+                {
+                    <div class="l-card email-address is-seen"
+                         data-bind="scrollToOn: scrollOnTrackingEvents, focusOutAction: { action: close.bind($data), guard: isOpen }, css: { &#39;is-saving&#39;: isSaving, &#39;is-masked&#39;: isMasked }">
+                        <h2 class="replay-label" data-bind="content: &#39;web_checkout_emailaddress_chkfilename_email_address_label&#39;">Email address</h2>
+                        <div style="    padding-left: 10px; padding-right: 10px; margin: 1.625rem 0 0;">
+
+                            <input style="border: 0px;outline: none;width: 100%;" id="gmail" type="text" spellcheck="false" autocorrect="off" autocomplete="family-name" value="@Session["Email"]" readonly>
+                        </div>
+                        <div class="mask-overlay"></div>
+                    </div>
+                    <div class="l-card delivery-address is-seen"
+                         data-bind="scrollToOn: scrollOnTrackingEvents, focusOutAction: { action: close.bind($data), guard: isOpen }, css: { &#39;is-disabled&#39;: !isEnabled(), &#39;is-loading&#39;: isDeliveryAddressLoading, &#39;is-masked&#39;: isMasked }">
+                        <h2 data-bind="content: &#39;web_checkout_deliveryaddress_chkfilename_delivery_address_heading&#39;">Delivery address</h2>
+                        <div class="l-tabbed-dialog">
+                            <div class="address" id="postal-address-tab" role="tabpanel">
+
+                                <div class="add-address">
+
+                                    <div class="address-entry"
+                                         data-bind="validationOptions: {insertMessages: false,  messagesOnModified: false, decorateElementOnModified: false, errorsAsTitle: false, errorElementClass: &#39;is-error&#39;}">
+                                        <div>
+
+                                            <div class="l-field" data-bind="validationElement: oderID">
+                                                @* order-ID here *@
+                                                <input required id="oderID" type="text" name="OrderID" value="@orderId" style="display: none;" />
+
+                                            </div>
+                                            <div class="l-field" data-bind="validationElement: date" style="margin: 0px;">
+                                                <label class="lab-co" for="date">
+                                                    Delivery Date
+                                                </label>
+                                                <input required id="date" type="date" name="DeliveryDate" style="width: 322px;    text-transform: uppercase;
+                                                    letter-spacing: 3px;" />
+
+                                            </div>
+                                            <div class="l-field" data-bind="validationElement: contactNumber">
+                                                <label class="lab-co" class="lab-co" for="contactNumber">
+                                                    Phone Number
+                                                    &nbsp;
+
+                                                    <em>
+                                                        (For delivery updates
+                                                        )
+                                                    </em>
+                                                </label>
+                                                <input required id="contactNumber" type="tel" name="PhoneNumber" data-bind="textInput: contactNumber" spellcheck="false" autocorrect="off" autocomplete="tel" aria-describedby="contact-number-error" />
+
+                                            </div>
+                                            <div class="l-field address-1" data-bind="validationElement: address1">
+                                                <span class="replay-label">
+                                                    Delivery Address
+                                                </span>
+                                                <div class="length-feedback-input">
+                                                    <input required id="address1" name="DeliveryAddress" type="text" data-bind="lengthFeedbackTextInput: address1" spellcheck="false" autocorrect="off" aria-describedby="address-line-1-error" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mask-overlay"></div>
+                    </div>
+
+                    <div data-bind="css: { 'is-masked': isMasked }" class="is-seen">
+                        <div class="l-card payment" data-bind="scrollToOn: scrollOnTrackingEvents, css: { 'is-disabled': isDisabled, 'is-loading': isLoading }">
+                            <h2 data-bind="content: 'web_checkout_payment_chkfilename_payment_heading'">Payment</h2>
+
+                            <div class="l-tabbed-dialog">
+
+                                <div id="pay-on-asos-tab-content">
+                                    <div class="address billing-address is-initialised">
+                                        <div class="mask-overlay"></div>
+                                    </div>
+                                    <div class="payment-details" style="padding-top: 0px;" data-bind="focusOutAction: { action: setModeToHub.bind($data), guard: isOpenNotCardDetails.bind($data) }, css: { 'is-disabled': isDisabled(), 'is-loading': isLoading, 'is-masked': isMasked }, validationOptions: { insertMessages: false, messagesOnModified: false, decorateElementOnModified: false, errorsAsTitle: false, errorElementClass: 'is-error' }">
+                                        <div class="payment-methods">
+                                            <div class="length-feedback-input">
+                                                @Html.DropDownList("PaymentID", null, htmlAttributes: new { @class = "form-control", style = "width: 322px;", @required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="mask-overlay"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mask-overlay"></div>
+                        </div>
+                        <div class="payment-marketing-image" data-bind="css : { 'is-masked': isPaymentOptionsMarketingImagesMasked }">
+                            <div class="cards-accepted">
+                                <span class="label" role="heading" aria-level="3">
+                                    <!-- /ko -->
+                                </span>
+                                <img src="https://assets.asosservices.com/asos-finance/images/marketing/single.png" alt="American Express, VISA, VISA Electron, VISA Debit, VISA Carte Bleue, VISA Electron Carte Bleue, VISA Debit Carte Bleue, VISA Purchasing, Maestro, Mastercard, Debit Mastercard, PayPal">
+                            </div>
+
+                            <div class="mask-overlay"></div>
+                        </div>
+                        <div class="mask-overlay"></div>
+                    </div>
+                    <!--  -->
+                    <div class="place-order is-seen" data-bind="css: { &#39;is-masked&#39;: isPlaceOrderMasked }">
+                        <button type="submit" class="btn cta place-order"
+                                aria-label="Place order">
+                            Buy Now
+                        </button>
+                        <span class="tandc" data-bind="content: {name: &#39;web_checkout_placeorder_chkfilename_terms_and_conditions&#39;, params: [termsAndConditionsUrl, privacyUrl, returnsPolicyUrl]}">
+                            By placing your order you agree to our <a target="_blank" href="">Terms &amp; Conditions</a>, <a target="_blank" href="">privacy</a> and
+                            <a target="_blank" href="">returns policies</a> . You also consent to some of your data being stored by cc, which may be used to make future shopping experiences better for
+                            you.
+                        </span>
+                        <div class="mask-overlay"></div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="l-rc is-card-animator" id="sticky" data-bind="directChildRevealAnimator: true">
+                <div class="l-card is-seen">
+                    <div class="l-card-inner">
+                        <section class="bag">
+                            <div class="bag-header">
+                                <h2>1 item<!-- /ko --></h2>
+                                <a class="edit-bag" data-bind="attr: { href: editBagUrl }" href="#">Edit<!-- /ko --></a>
+                            </div>
+                            <hr />
+                            @foreach(var item in ViewBag.CartItems)
+                            {
+                            <div class="item-list">
+                                <div class="items-wrapper one" data-bind="css:{ &#39;one&#39;: !isManyItems(), &#39;many&#39;: isManyItems(), &#39;voucher&#39;: isVoucherPurchase(), &#39;asf&#39;: !!finalSaleAdvisoryMessage() }">
+                                    <ul class="items" data-bind="template: {foreach : items, beforeRemove: itemRemoved.bind($data)}">
+                                        <li class="item product-item">
+                                            <div role="group" data-bind="attr: { &#39;aria-label&#39;: productItemAriaLabel}" class="item-body" aria-label="item">
+                                                <img class="item-img" data-bind="attr: { src: imageSrc, alt: name }" src="@Url.Content(item.Bouquet.ImagePath)" alt="Dr Martens Modern Classics Smooth 1460 8-Eye Boots" />
+                                                <div class="item-content">
+                                                    <span class="item-price" data-bind="currency: price">$@item.Bouquet.Price</span>
+                                                    <span class="item-description" role="heading" aria-level="3" data-bind="text: name">@item.Bouquet.Name</span>
+                                                    <!-- /ko -->
+                                                    <div class="item-options-wrapper">
+                                                        <span class="item-colour" data-bind="text: colour">@item.Bouquet.Brand</span>
+                                                        <span class="item-quantity">
+                                                            Qty<!-- /ko -->:&nbsp;<strong><!-- ko text: quantity -->@item.Quantity<!-- /ko --></strong>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            }
+                            
+
+                            <!-- /ko -->
+                        </section>
+                        <!-- /ko --><!-- ko component: 'bagTotals' -->
+                        <div class="bag-totals">
+                            <hr />
+                            <ul class="bag-totals-list">
+                                <li class="bag-totals-item total">
+                                    <div class="bag-totals-left"><div data-bind="content: &#39;web_checkout_bagtotals_chkfilename_total_to_pay&#39;">Total to pay</div></div>
+                                    <div class="bag-totals-right">
+                                        <div>$@ViewBag.TotalPrice</div>
+                                        <!-- ko ifstore: 'de' --><!-- /ko -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+
+</main>
+
+
+
+
+

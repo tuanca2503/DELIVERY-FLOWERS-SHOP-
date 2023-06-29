@@ -1,0 +1,56 @@
+.item_item {
+  background-color: var(--3pchel);
+}
+
+.item_item:hover {
+  background-color: var(--sm859b);
+}
+
+.item_link {
+  border-bottom: 1px solid var(--1wwppwc);
+  color: var(--11lcxa5);
+  display: block;
+  padding: 1.5em 1em;
+  text-decoration: none;
+}
+
+.item_link:focus {
+  background-color: var(--sm859b);
+}
+
+.category_title {
+  background: var(--1wwppwc);
+  padding: 1em;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  line-height: 22px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.app_appLayout {
+  max-width: 1322px;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 0;
+  display: flex;
+}
+
+.app_header {
+  background-color: var(--1wwppwc);
+  color: var(--11lcxa5);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 2px;
+  margin-bottom: 1px;
+  padding: 1em;
+  text-align: center;
+}
+
+.app_mainList {
+  background-color: var(--1wwppwc);
+  padding: 0 0 8em;
+}
+

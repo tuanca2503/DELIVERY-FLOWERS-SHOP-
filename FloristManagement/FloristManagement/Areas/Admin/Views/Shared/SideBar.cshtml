@@ -1,0 +1,67 @@
+﻿<ul class="nav pcoded-inner-navbar">
+    <li class="nav-item pcoded-menu-caption">
+        <label>Navigation</label>
+    </li>
+    <li class="nav-item">
+        <a href="/Admin/Home/Index" class="nav-link"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+    </li>
+    <li class="nav-item pcoded-menu-caption">
+        <label>Management</label>
+    </li>
+    <li class="nav-item pcoded-hasmenu">
+        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Occasion</span></a>
+        <ul class="pcoded-submenu">
+            <li class=""><a href="/Admin/Occasions/Index" class="">Index</a></li>
+            <li class=""><a href="/Admin/Occasions/Create" class="">Create</a></li>
+        </ul>
+    </li>
+    <li class="nav-item pcoded-hasmenu">
+        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Gallery</span></a>
+        <ul class="pcoded-submenu">
+            <li class=""><a href="/Admin/Galleries/Index">Index</a></li>
+            <li class=""><a href="/Admin/Galleries/Create" class="">Create</a></li>
+        </ul>
+    </li>
+    <li class="nav-item pcoded-hasmenu">
+        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Order</span></a>
+        <ul class="pcoded-submenu">
+            <li class=""><a href="/Admin/Orders/Index">Index</a></li>
+        </ul>
+    </li>
+    <li class="nav-item pcoded-hasmenu">
+        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Bouquet</span></a>
+        <ul class="pcoded-submenu">
+            <li class=""><a href="/Admin/Bouquets/Index">Index</a></li>
+            <li class=""><a href="/Admin/Bouquets/Create" class="">Create</a></li>
+        </ul>
+    </li>
+    @if (Convert.ToInt32(Session["AdminRole"]) == 1)
+    {
+        <li class="nav-item pcoded-hasmenu">
+            <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Florist</span></a>
+            <ul class="pcoded-submenu">
+                <li class=""><a href="/Admin/Florists/Index">Index</a></li>
+            </ul>
+        </li>
+    }
+
+
+    <li class="nav-item pcoded-menu-caption">
+        <label>Chat with users</label>
+    </li>
+
+    <li class="nav-item">
+        <a href="@Url.Action("ContactAdmin", "Home")" class="nav-link"><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">Chat</span></a>
+    </li>
+    <li class="nav-item pcoded-menu-caption">
+        <label>Hi, @Session["Username"]</label>
+    </li>
+    <li class="nav-item pcoded-hasmenu">
+        <a href="#!" class="nav-link"><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
+        <ul class="pcoded-submenu">
+            <li class=""><a href="@Url.Action("Signup","Home")">Signup</a></li>
+            <li class=""><a href="@Url.Action("Logout","Home")">Logout</a></li>
+        </ul>
+    </li>
+
+</ul>

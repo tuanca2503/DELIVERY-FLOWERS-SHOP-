@@ -1,0 +1,532 @@
+﻿@model FloristManagement.Models.CartViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/Root/CSS/bag.1.0.0-e132f7715023-5590.min.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/main.fd496e212cc684017b2e.css" rel="stylesheet" />
+
+<div id="chrome-breadcrumb" style="display:none">
+    <div>
+        <nav aria-label="breadcrumbs" class="_1MMuO3r"></nav>
+    </div>
+</div>
+
+<main id="chrome-app-container">
+    <div id="bagApp">
+        <div class="bag-app is-not-error-page has-bag-items">
+            <bag-messages class="bag-messages-application"
+                          params="messages: messages">
+                <div id="ndd-portal"></div>
+                <!-- ko if: messages().length -->
+                <div class="bag-messaging-looper" data-bind="foreach: messages">
+                    <div class="bag-messaging-holder bag-messaging-holder--marketing"
+                         data-code="bagAutoUpgradePrompt"
+                         id="bag-messaging-holder-368182">
+                        <div class="bag-messaging-icon bag-messaging-looper">
+                            <p role="alert"
+                               class="bag-messaging-displayText"
+                               data-bind="html: displayText  ">
+                                Can we tempt you? Spend another £90.00 to qualify for
+                                FREE Standard Delivery to Vietnam.
+                            </p>
+                            <!-- ko if: canDismiss --><!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </bag-messages>
+            <!-- ko if: hasError --><!-- /ko -->
+            <!-- ko ifnot: hasError -->
+            <div class="bag-holder" style="display: flex;">
+                <!-- ko ifnot: emptyBag -->
+                <div class="bag-contents-wrapper">
+                    <div class="bag-contents-holder bag-contents-holder--items">
+                        <!-- ko if: beingEdited --><!-- /ko -->
+                        <!-- ko ifnot: loading -->
+                        <div class="bag-contents-holder-panel bag-title-holder"
+                             tabindex="-1">
+                            <h1 class="bag-title bag-title--items"
+                                data-bind="text: pageHeader">
+                                MY BAG
+                            </h1>
+                            <!-- ko if: showExpiry -->
+                            <p class="bag-expiry-warning bag-expiry-warning--desktop"
+                               data-bind="localeText:{key: &#39;lang_your_items_expiry_info&#39;}">
+                                Items are reserved for 60 minutes
+                            </p>
+                            <!-- /ko -->
+                        </div>
+                        <div id="bag-react-portal"
+                             data-bind="template: {
+                           afterRender: function() {
+                           window.asos.bagKOReady = true;
+                           window.asos.eventBus.emit(&#39;bagKOReady&#39;);
+                           } }"></div>
+                        <bag-messages class="bag-messages-panel-product"
+                                      params="messages: panelMessages.product">
+                            <div id="ndd-portal"
+                                 data-bind="template: {
+                              afterRender: function() {
+                              window.asos.bag.nddPortalReady = true;
+                              window.asos.eventBus.emit(&#39;nddPortalReady&#39;);
+                              } }"></div>
+                            <!-- ko if: messages().length -->
+                            <div class="bag-messaging-looper"
+                                 data-bind="foreach: messages">
+                                <div class="bag-messaging-holder bag-messaging-holder--dismissible bag-messaging-holder--alert"
+                                     data-bind="
+                                 css: {
+                                 &#39;bag-messaging-holder--product&#39;: $parent.isProduct,
+                                 &#39;bag-messaging-holder--subscription&#39;: $parent.isSubscription,
+                                 &#39;bag-messaging-holder--dismissible&#39;: canDismiss,
+                                 &#39;bag-messaging-holder--alert&#39;: level() === &#39;alert&#39;,
+                                 &#39;bag-messaging-holder--error&#39;: level() === &#39;error&#39;,
+                                 &#39;bag-messaging-holder--marketing&#39;: level() === &#39;marketing&#39;,
+                                 &#39;bag-messaging-holder--confirm&#39;: level() === &#39;confirm&#39;,
+                                 &#39;bag-messaging-holder--info&#39;: level() === &#39;info&#39;,
+                                 &#39;bag-messaging-holder--removing&#39;: isRemoving
+                                 },
+                                 attr: {
+                                 &#39;data-code&#39;: errorCode,
+                                 id: &#39;bag-messaging-holder-&#39; + elementId()
+                                 }
+                                 "
+                                     data-code="ComputedItemsRecentlyExpired"
+                                     id="bag-messaging-holder-5327">
+                 
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                        </bag-messages>
+                        <bag-group-list>
+                            <ul class="bag-groups" data-bind="foreach: groups">
+                                <li class="bag-contents-holder-panel bag-group-holder">
+                                    <!-- ko if: description --><!-- /ko -->
+                                    <bag-item-list>
+                                        <ul class="bag-items" data-bind="foreach: items">
+                                            @foreach (var cartItem in Model.CartItems)
+                                            {
+                                                <li class="bag-item-holder"
+                                                    aria-label="product"
+                                                    role="group"
+                                                    data-saved-text="Item saved for later"
+                                                    data-id="7e6cc0cc-1956-4989-babb-3bf28245ec20">
+                                                    <span role="alert"
+                                                          class="deleteNotification"
+                                                          data-bind="text: $parent.localisedRemoveText">Item deleted</span>
+                                                    <span role="alert"
+                                                          class="savedNotification"
+                                                          data-bind="text: $parent.localisedSavedText">Item saved for later</span>
+                                                    <div class="bag-item-padding">
+                                                        <div class="bag-item-border">
+                                                            <div class="bag-item-zoomer">
+                                                                <!-- ko if: itemType === 'Product' -->
+                                                                <bag-item-product class="bag-item bag-item--product">
+                                                                    <div class="bag-item-generic bag-item-container bag-item-container--product bag-item-generic--showing">
+                                                                        <div class="bag-item__left">
+                                                                            <bag-item-image class="bag-item-image">
+                                                                                <!-- ko if: hasImages() -->
+                                                                                <span class="bag-item-image">
+                                                                                    <!-- ko if: itemLink -->
+                                                                                    <a data-bind="attr: { href: itemLink }"
+                                                                                       href="">
+                                                                                        <img class="bag-item-image-img" src="@Url.Content(cartItem.Bouquet.ImagePath)" />
+                                                                                    </a>
+                                                                                    <!-- /ko -->
+                                                                                    <!-- ko ifnot: itemLink --><!-- /ko -->
+                                                                                </span>
+                                                                                <!-- ko if: urgencyMessage --><!-- /ko -->
+                                                                                <!-- /ko -->
+                                                                            </bag-item-image>
+                                                                        </div>
+                                                                        <div class="bag-item-descriptions">
+                                                                            <bag-price class="bag-item-price"
+                                                                                       params="price: item.price">
+                                                                                <div class="bag-item-price-holder">
+                                                                                    <span class="sr-only"
+                                                                                          data-bind="
+                                                                                         text: screenReaderCurrentPrice
+                                                                                         ">current price:</span>
+                                                                                    <span class="bag-item-price bag-item-price--current bag-item-price--markedDown"
+                                                                                          data-bind="
+                                                                                         text: currentPrice,
+                                                                                         css: {
+                                                                                         &#39;bag-item-price--markedDown&#39;: price.isMarkedDown,
+                                                                                         &#39;bag-item-price--rrp&#39;: price.isOutletPrice
+                                                                                         }
+                                                                                         ">
+                                                                                        $@(cartItem.Bouquet.Price * cartItem.Quantity)
+                                                                                    </span>
+                                                                                </div>
+                                                                            </bag-price>
+                                                                            <p class="bag-item-name">
+                                                                                @cartItem.Bouquet.Name
+                                                                            </p>
+                                                                            <p class="bag-item-name">
+                                                                                $@cartItem.Bouquet.Price
+                                                                            </p>
+                                                                            @using (Html.BeginForm("UpdateCart", "Cart", FormMethod.Post))
+                                                                            {
+                                                                                @Html.Hidden("cartItemId", cartItem.CartItemID)
+                                                                                @Html.TextBox("quantity", cartItem.Quantity, new { @type = "number", @min = "1", @step = "1" })
+                                                                                <input type="submit" value="Update" />
+                                                                            }
+
+
+                                                                        </div>
+                                                                        <bag-edit-actions class="bag-item-actions-holder"
+                                                                                          params="onCancel: reset, onUpdate: updateItemSelection, beingEdited: item.beingEdited">
+                                                                            <!-- ko if: showActions --><!-- /ko -->
+                                                                        </bag-edit-actions>
+                                                                        <!-- ko ifnot: item.beingEdited -->
+                                                                        <bag-messages params="messages: item.messages, isProduct: true">
+                                                                            <div id="ndd-portal"
+                                                                                 data-bind="template: {
+                                                                                   afterRender: function() {
+                                                                                   window.asos.bag.nddPortalReady = true;
+                                                                                   window.asos.eventBus.emit(&#39;nddPortalReady&#39;);
+                                                                                   } }">
+                                                                            </div>
+                                                                                                <!-- ko if: messages().length --><!-- /ko -->
+                                                                         </bag-messages>
+                                                                                            <!-- /ko -->
+                                                                                            <!-- ko if: isMobile --><!-- /ko -->
+                                                                          </div>
+                                                                </bag-item-product>
+                     
+
+                                                                                    <bag-remove class="bag-item-remove-holder"
+                                                                                                params="item: $data, index: $index">
+                                                                                        <div class="bag-item-generic bag-item-generic--showing"
+                                                                                             data-bind="
+                                                                                                 css: {
+                                                                                                 &#39;bag-item-generic--delaying&#39;: itemDelaying,
+                                                                                                 &#39;bag-item-generic--showing&#39;: itemShowing
+                                                                                                 }
+                                                                                                 ">
+                                                                                            <form method="post" action="@Url.Action("DeleteCartItem", "Cart", new { cartItemId = cartItem.CartItemID })">
+                                                                                                <button type="submit" class="bag-item-remove"
+                                                                                                        data-bind="                                                                                                                                                                    "
+                                                                                                        aria-label="Delete this item"
+                                                                                                        data-id="7e6cc0cc-1956-4989-babb-3bf28245ec20">
+                                                                                                </button>
+                                                                                            </form>
+                                                                                        </div>
+                                                                </bag-remove>
+                                                            </div>
+                                                            <!-- ko if: itemType !== 'Product' && $parent.isMobile --><!-- /ko -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- ko if: $data.isLoading --><!-- /ko -->
+                                                </li>
+
+                                            }
+
+                                        </ul>
+                                    </bag-item-list>
+                                </li>
+                            </ul>
+                        </bag-group-list>
+                        <!-- ko if: !showBottomSubtotal() -->
+                        <div class="bag-contents-holder-panel">
+                            <div class="bag-subtotal">
+                                <span class="bag-subtotal-subtotal"
+                                      data-bind="localeText: {key: &#39;lang_your_items_sub_total_label&#39;}">Sub-total</span>
+                                <span class="bag-subtotal-price"
+                                      data-bind="text: subTotal()">$@Model.Cart.TotalPrice</span>
+                                <!-- ko if: displayVatMessage --><!-- /ko -->
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                    <!-- ko if: itemCount -->
+                    <!-- ko ifnot: loading -->
+                    <!-- /ko -->
+                    <!-- /ko -->
+                </div>
+
+
+                @* sticky *@
+                <div class="bag-secondary-content-wrapper" id="outSticky" style="position:relative">
+                    <div class="bag-contents-holder bag-contents-holder-panel bag-contents-holder--total" id="sticky">
+                        <!-- ko if: beingEdited --><!-- /ko -->
+                        <!-- ko ifnot: loading -->
+                        <bag-total class="bag-total-holder-root bag-total-holder-root--main">
+                            <div class="bag-total-wrapper">
+                                <div class="bag-total-holder bag-title-holder bag-title-holder--total">
+                                    <span class="bag-title-quicklink bag-title-quicklink--meta">
+                                        <!-- ko if: quickLink --><!-- /ko -->
+                                        <span class="bag-title bag-title--total">
+                                            Total
+                                        </span>
+                                        <span class="bag-total-title-holder bag-total-title-holder--subtotal">
+                                            <!-- ko ifnot: quickLink -->
+                                            <span class="bag-total-title bag-total-title--subtotal"
+                                                  data-bind="localeText: {key: &#39;lang_bag_total_subtotal&#39;}">Sub-total</span>
+                                            <!-- /ko -->
+                                            <span class="bag-total-price bag-total-price--subtotal">£110.00</span>
+                                            <!-- ko if: displayVatMessage --><!-- /ko -->
+                                        </span>
+                                    </span>
+                                    <!-- ko if: canShowDelivery -->
+                                    <bag-delivery-options params="delivery: delivery">
+                                        <p class="bag-total-title-holder bag-total-title-holder--delivery">
+                                            <span class="bag-total-title bag-total-title--delivery"
+                                                  data-bind="localeText: {key: &#39;lang_bag_total_delivery&#39;}">Delivery</span>
+                                            <a class="bag-delivery-options-link"
+                                               target="_blank"
+                                               data-bind="
+                                          attr: {
+                                          title: linkTitleTranslation,
+                                          href: deliveryInformationLinkAddress,
+                                          &#39;aria-label&#39;: linkTitleTranslation
+                                          }
+                                          "
+                                               title="Read about our delivery options by clicking here"
+                                               href="https://www.asos.com/customer-service/delivery/?CTARef=Bag+Delivery+Info+Button"
+                                               aria-label="Read about our delivery options by clicking here"></a>
+                                        </p>
+                                        <!-- ko if: displaySaleTax --><!-- /ko -->
+                                        <!-- ko if: deliveryOptionsAvailable -->
+                                        <div class="delivery-dropdown-holder">
+                                            <span class="bag-item-selector--desktop">
+                                                <select class="bag-item-selector select2-hidden-accessible"
+                                                        data-bind="
+                                             options: options,
+                                             optionsText: optionsValue,
+                                             optionsValue: &#39;deliveryOptionId&#39;,
+                                             value: selectedDeliveryOption,
+                                             select2: {
+                                             label: selectedDeliveryOptionLabel(),
+                                             onSelect: updateSelectedDeliveryOptionLabel
+                                             },
+                                             "
+                                                        data-select2-id="7"
+                                                        tabindex="-1"
+                                                        aria-hidden="true">
+                                                    <option value="1" data-select2-id="9">
+                                                        Standard Delivery (£10.00)
+                                                    </option>
+                                                    <option value="5">
+                                                        Express Delivery (£20.00)
+                                                    </option>
+                                                </select>
+                                                <span class="select2 select2-container select2-container--default"
+                                                      dir="ltr"
+                                                      data-select2-id="8"
+                                                      style="width: 300px">
+                                                    <span class="selection">
+                                                        <span class="select2-selection select2-selection--single"
+                                                              role="combobox"
+                                                              aria-haspopup="true"
+                                                              aria-expanded="false"
+                                                              tabindex="0"
+                                                              aria-disabled="false"
+                                                              aria-label="Standard Delivery (£10.00)">
+                                                            <span class="select2-selection__rendered"
+                                                                  id="select2-ywsy-container"
+                                                                  role="textbox"
+                                                                  aria-readonly="true"
+                                                                  title="Standard Delivery (£10.00)">Standard Delivery (£10.00)</span><span class="select2-selection__arrow"
+                                                                                                                                            role="presentation">
+                                                                <b role="presentation"></b>
+                                                            </span>
+                                                        </span>
+                                                    </span><span class="dropdown-wrapper"
+                                                                 aria-hidden="true"></span>
+                                                </span>
+                                            </span>
+                                            <span class="bag-item-selector--mobile">
+                                                <select class="bag-item-selector select2-hidden-accessible"
+                                                        data-select2-id="10"
+                                                        tabindex="-1"
+                                                        aria-hidden="true">
+                                                    <option value="1" data-select2-id="12">
+                                                        Standard Delivery (£10.00)
+                                                    </option>
+                                                    <option value="5">
+                                                        Express Delivery (£20.00)
+                                                    </option>
+                                                </select>
+                                                <span class="select2 select2-container select2-container--default"
+                                                      dir="ltr"
+                                                      data-select2-id="11"
+                                                      style="width: 100px">
+                                                    <span class="selection">
+                                                        <span class="select2-selection select2-selection--single"
+                                                              role="combobox"
+                                                              aria-haspopup="true"
+                                                              aria-expanded="false"
+                                                              tabindex="0"
+                                                              aria-disabled="false"
+                                                              aria-label="Standard Delivery (£10.00)">
+                                                            <span class="select2-selection__rendered"
+                                                                  id="select2-lpa7-container"
+                                                                  role="textbox"
+                                                                  aria-readonly="true"
+                                                                  title="Standard Delivery (£10.00)">Standard Delivery</span><span class="select2-selection__arrow"
+                                                                                                                                            role="presentation">
+                                                                <b role="presentation"></b>
+                                                            </span>
+                                                        </span>
+                                                    </span><span class="dropdown-wrapper"
+                                                                 aria-hidden="true"></span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <!-- /ko -->
+                                    </bag-delivery-options>
+                                    <!-- /ko -->
+                                    <span class="bag-title-quicklink bag-title-quicklink--checkout">
+                                        <span class="bag-total-button-holder">
+                                            <a href="@Url.Action("Index", "Order")"
+                                               class="bag-total-button bag-total-button--checkout bag-total-button--checkout--total">CHECKOUT</a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </bag-total>
+                        <bag-payment-options params="bag: bag">
+                            <div class="bag-payment-options">
+                                <div class="bag-payment-options-title"
+                                     data-bind="
+                                 localeText: {key: &#39;lang_payment_options_title&#39;}
+                                 ">
+                                    WE ACCEPT:
+                                </div>
+                                <!-- ko ifnot: loading -->
+                                <img class="bag-payment-options-image" src="~/Content/Root/Images/single.png" />
+                                <!-- /ko -->
+                            </div>
+                        </bag-payment-options>
+                        <div class="bag-discount-message"
+                             data-bind="localeText: {key: &#39;lang_discount_code_info&#39;}">
+                            Got a discount code? Add it in the next step.
+                        </div>
+                        <bag-messages class="bag-messages-panel-totals"
+                                      params="messages: panelMessages.totals">
+                            <div id="ndd-portal"
+                                 data-bind="template: {
+                              afterRender: function() {
+                              window.asos.bag.nddPortalReady = true;
+                              window.asos.eventBus.emit(&#39;nddPortalReady&#39;);
+                              } }"></div>
+                            <!-- ko if: messages().length --><!-- /ko -->
+                        </bag-messages>
+                        <!-- /ko -->
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: emptyBag --><!-- /ko -->
+                <!-- ko ifnot: emptyBag -->
+                <!-- ko ifnot: hasExpiredItems --><!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <!-- /ko -->
+            <!-- ko if: bagFirstRunLoading --><!-- /ko -->
+        </div>
+        <div class="bag-app-modals"
+             data-bind="attr: { &#39;aria-hidden&#39;: !isMainAppHidden() ? true : null }"
+             aria-hidden="true">
+            <!-- ko if: isExpiredItemsModalOpen --><!-- /ko -->
+            <!-- ko if: isGroupInfoModalOpen --><!-- /ko -->
+        </div>
+    </div>
+
+</main>
+
+<script>
+    window.onload = function () {
+
+        window.addEventListener('scroll', function () {
+            var f = document.querySelector('#chrome-header').offsetHeight
+
+            var a = document.querySelector('.bag-holder').offsetHeight
+            var b = document.querySelector('.bag-holder').getBoundingClientRect().left
+            var c = document.querySelector('.bag-holder').getBoundingClientRect().top;
+
+            var sticky = document.querySelector('#sticky')
+            var d = document.querySelector('#outSticky').offsetHeight
+            var e = document.querySelector('#sticky').offsetHeight
+
+
+            var scroll = window.pageYOffset;
+
+            console.log(a, b, c, scroll, d, e,f)
+            if (c <= 0) {
+                sticky.style.position = 'relative'
+                sticky.style.top = (scroll-e+(f/2)) + "px"
+                sticky.style.bottom = ""
+
+                //d.style.zIndex = 1000
+            }
+            if (c >= 0) {
+                sticky.style.position = ""
+                sticky.style.top = ""
+                sticky.style.bottom = ""
+
+            }
+            console.log(scroll,a)
+            if (scroll >= a-(f/2)) {
+                sticky.style.position = "absolute"
+                sticky.style.top = ""
+                sticky.style.bottom = 0 + "px"
+            }
+
+        })
+
+
+        //window.addEventListener('scroll', function () {
+        //    var element = document.getElementById('sticky');
+        //    var b = document.querySelector('.bag-holder').getBoundingClientRect().left
+
+        //    var c = document.querySelector('.bag-holder').clientHeight
+        //    var d = document.getElementById('sticky').clientHeight
+
+        //    var distance = element.getBoundingClientRect().top;
+        //    var offset = window.pageYOffset;
+        //    console.log(offset, distance, c, d)
+        //    if (offset > a + 180) {
+        //        element.style.position = 'fixed';
+        //        element.style.right = (b + 10) + "px";
+        //        element.style.top = (10) + "px"
+        //        element.style.zIndex = 1000
+
+        //        if (offset >= c) {
+        //            element.style.position = '';
+        //            element.style.right = '';
+        //            element.style.bottom = c + "px";
+        //        } else {
+        //            element.style.position = 'fixed';
+        //            element.style.right = (b + 10) + "px";
+        //            element.style.top = (10) + "px"
+        //            element.style.zIndex = 1000
+        //        }
+        //    } else {
+        //        element.style.position = 'static';
+        //        element.style.right = "";
+        //        element.style.top = ""
+        //    }
+        //});
+    }
+</script>
+
+
+@*<p>Total Price: @Model.Cart.TotalPrice</p>
+    <form method="post" action="@Url.Action("Checkout", "Cart")">
+        <div class="form-group">
+            <label for="phonenumber">Phone number:</label>
+            <input type="text" class="form-control" id="phonenumber" name="phonenumber" required>
+        </div>
+        <div class="form-group">
+            <label for="deliverydate">Delivery date:</label>
+            <input type="date" class="form-control" id="deliverydate" name="deliverydate" required>
+        </div>
+        <div class="form-group">
+            <label for="deliveryaddress">Delivery address:</label>
+            <textarea class="form-control" id="deliveryaddress" name="deliveryaddress" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Checkout</button>
+    </form>*@

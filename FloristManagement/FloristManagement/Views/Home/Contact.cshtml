@@ -1,0 +1,402 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/jquery.signalR-2.4.3.js"></script>
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+    <script type="text/javascript" src="Hubs/ChatHub"></script>
+    <script type="text/javascript">
+        let userJoinGroup = false;
+        let session = localStorage.getItem("session_signalR");
+
+
+        $(document).ready(function () {
+            @*var chat = $.connection.hub;*@
+
+            var chat = $.connection.chatHub;
+
+
+            chat.client.writeMessage = function (from, msg, to) {
+                $("#messages").append("<li>" + from + ": " + msg + "</li>");
+            }
+
+            // call đến ChatHub BroadcastMessage() -> call đến writeMessage()
+            $.connection.hub.start().then(async function () {
+                $("#buttonSubmit").click(async function () {
+                    // gửi đến tất cả user
+                    // chat.server.broadcastMessage($("#txtName").val(), $("#txtInput").val());
+
+                    // gửi đến group
+                    // check user đăng nhập || Ẩn danh
+                    if (!userJoinGroup) {
+                        if (!session) {
+                            session = new Date().getTime().toString()
+                            localStorage.setItem("session_signalR", session);
+                        }
+                        userJoinGroup = await chat.server.joinGroup(session, $("#txtInput").val());
+                    } else {
+                        chat.server.sendMessageFromUser(session, $("#txtInput").val());
+                    }
+                })
+
+                if (session) {
+                    const messages = await chat.server.getOldMessage(session);                   
+                    // bỏ qua tin nhắn cuối cùng gửi (tin nhắn hiện tại)
+                    if (messages)
+                        for (let i = 0; i < messages.length; i++) {
+                            $("#messages").append("<li>" + messages[i].from + ": " + messages[i].msg + "</li>" );
+                        }
+                }
+            });
+        })
+    </script>
+}
+
+
+<style>
+
+
+    #form-contact {
+        height: 100%;
+        display: block;
+    }
+
+    .mHead-form-contact {
+        height: 60px;
+        width: 100%;
+        background: #2d2d2d;
+    }
+
+    .mBody-form-contact {
+        overflow-y: scroll;
+        height: calc(100% - 15% - 60px);
+        padding: 14px;
+    }
+
+        .mBody-form-contact::-webkit-scrollbar {
+            margin-top: 10px;
+            width: 0px;
+        }
+
+        .mBody-form-contact::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .mBody-form-contact::-webkit-scrollbar-thumb {
+            background: #2d2d2d;
+            height: 5px;
+            border-radius: 20px;
+        }
+
+            .mBody-form-contact::-webkit-scrollbar-thumb:hover {
+                background: rgb(255, 142, 142);
+            }
+
+    .text-box-shop, .text-box-cust {
+        margin-top: 5px;
+    }
+
+        .text-box-shop span, .text-box-cust span {
+            border-radius: 22px;
+            font-size: 16px;
+            display: inline-flex;
+            padding: 12px 16px 12px 16px;
+        }
+
+        .text-box-shop span {
+            background-color: #eeeeee;
+            color: #2d2d2d;
+        }
+
+        .text-box-cust span {
+            background-color: #2d2d2d;
+            color: #ffffff;
+        }
+
+
+
+
+    #customer-box {
+        text-align: right;
+    }
+
+    .mFooter-form-contact {
+        height: 15%;
+        padding: 14px;
+    }
+
+    .footer-main {
+        height: 100%;
+        width: 100%;
+    }
+
+    .msg-info-name {
+        justify-content: flex-start;
+        margin-left: 12px;
+        font-size: 12px;
+    }
+
+    .msg-info-time span {
+        font-size: 11px;
+        margin-left: 12px
+    }
+
+    .footer-main {
+        display: flex;
+        border: 2px solid rgb(238, 238, 238);
+        border-radius: 8px;
+    }
+
+    #area-customer {
+        width: 100%;
+        border: 0px;
+        resize: none;
+        border: none;
+        outline: none;
+        padding-top: 10px
+    }
+
+        #area-customer::placeholder {
+            line-height: 2
+        }
+
+        #area-customer:focus::placeholder {
+            opacity: 0
+        }
+
+        #area-customer::-webkit-scrollbar {
+            width: 0px
+        }
+
+    .d-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .h-100 {
+        height: 100%;
+    }
+
+    .footer-left {
+        width: 90%;
+    }
+
+     .footer-right {
+        width: 10%;
+    }
+
+    .sendButton:hover {
+        cursor: pointer
+    }
+
+    .sendButton {
+        background-size: 100%;
+        height: 24px;
+        width: 24px;
+        background-image: url('https://media-eu2.digital.nuance.com/media/sites/10007081/flash/ASOS_Embedded_MVP/Icon_Send.svg');
+        cursor: default;
+        opacity: 0.6;
+    }
+</style>
+
+
+<main id="chrome-app-container">
+    <div id="react-root">
+        <div class="app_appLayout">
+            <!--  -->
+            <div class="Main_main Main_hasSidebar Main_margin">
+                <div class="Card_card Card_getInTouch">
+                    <div class="mHead-form-contact">
+                    </div>
+                    <!--  -->
+                    <div class="mBody-form-contact">
+                        <!-- chat -->
+                        <div class="agent-bubble-cont" id="shop-box">
+
+                            <div class="bubble-container">
+                                <agent-bubble>
+                                    <div class="text-box-shop">
+                                        <ul id="messages"></ul>
+                                    </div>
+                                </agent-bubble>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+
+
+                    <div class="mFooter-form-contact">
+                        <div class="footer-main">
+
+                            <div class="footer-left h-100 d-flex">
+                                <div>
+                                    <input id="txtInput" type="text" placeholder="Type a message"
+                                           aria-label="Type a message"
+                                           style="color: #2a2f36; border: none" />
+                                </div>
+                            </div>
+
+                            <div class="footer-right h-100 d-flex">
+                                <div>
+                                    <footer-button type="Send" imgname="Icon_Send.svg" text="Send">
+                                        <div class="send-container footer-button-cont">
+                                            <button id="buttonSubmit" aria-label="Send" class="sendButton" style="width:25px; height: 25px"></button>
+                                        </div>
+                                    </footer-button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--  -->
+                </div>
+            </div>
+            <!--  -->
+            <aside class="Aside_aside">
+                <div class="Card_card Card_aside">
+                    <div>
+                        <h2 class="CardHeader_header"
+                            id="viewRelatedQuestions"
+                            style="text-transform: uppercase">
+                            Popular FAQs
+                        </h2>
+                        <ul>
+                            <li class="CardListItem_topicItem CardListItem_iconRight"
+                                aria-setsize="6"
+                                aria-posinset="1">
+                                <a href="https://www.asos.com/customer-care/delivery/can-i-track-the-delivery-of-my-order/"
+                                   data-value="Can I track the delivery of my order?"
+                                   class="CardListItem_anchor">
+                                    <div class="CardListItem_imageWrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="44"
+                                             height="44"
+                                             aria-hidden="true">
+                                            <path fill="#2D2D2D"
+                                                  fill-rule="evenodd"
+                                                  d="m20 14.929-1.414 1.414L24.243 22l-5.657 5.657L20 29.07 27.071 22 20 14.929z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="CardListItem_textWrapper">
+                                        Can I track the delivery of my order?
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="CardListItem_topicItem CardListItem_iconRight"
+                                aria-setsize="6"
+                                aria-posinset="2">
+                                <a href="https://www.asos.com/customer-care/delivery/what-should-i-do-if-my-order-hasnt-been-delivered-yet/"
+                                   data-value="Where is my order?"
+                                   class="CardListItem_anchor">
+                                    <div class="CardListItem_imageWrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="44"
+                                             height="44"
+                                             aria-hidden="true">
+                                            <path fill="#2D2D2D"
+                                                  fill-rule="evenodd"
+                                                  d="m20 14.929-1.414 1.414L24.243 22l-5.657 5.657L20 29.07 27.071 22 20 14.929z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="CardListItem_textWrapper">
+                                        Where is my order?
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="CardListItem_topicItem CardListItem_iconRight"
+                                aria-setsize="6"
+                                aria-posinset="3">
+                                <a href="https://www.asos.com/customer-care/delivery/will-my-parcel-be-charged-customs-and-import-charges/"
+                                   data-value="Will my parcel be charged customs and import charges?"
+                                   class="CardListItem_anchor">
+                                    <div class="CardListItem_imageWrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="44"
+                                             height="44"
+                                             aria-hidden="true">
+                                            <path fill="#2D2D2D"
+                                                  fill-rule="evenodd"
+                                                  d="m20 14.929-1.414 1.414L24.243 22l-5.657 5.657L20 29.07 27.071 22 20 14.929z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="CardListItem_textWrapper">
+                                        Will my parcel be charged customs and import
+                                        charges?
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="CardListItem_topicItem CardListItem_iconRight"
+                                aria-setsize="6"
+                                aria-posinset="4">
+                                <a href="https://www.asos.com/customer-care/returns-refunds/what-is-your-returns-policy/"
+                                   data-value="What is your Returns Policy?"
+                                   class="CardListItem_anchor">
+                                    <div class="CardListItem_imageWrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="44"
+                                             height="44"
+                                             aria-hidden="true">
+                                            <path fill="#2D2D2D"
+                                                  fill-rule="evenodd"
+                                                  d="m20 14.929-1.414 1.414L24.243 22l-5.657 5.657L20 29.07 27.071 22 20 14.929z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="CardListItem_textWrapper">
+                                        What is your Returns Policy?
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="CardListItem_topicItem CardListItem_iconRight"
+                                aria-setsize="6"
+                                aria-posinset="5">
+                                <a href="https://www.asos.com/customer-care/returns-refunds/im-an-international-customer-how-do-i-return-something-to-you/"
+                                   data-value="How do I return something to you?"
+                                   class="CardListItem_anchor">
+                                    <div class="CardListItem_imageWrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="44"
+                                             height="44"
+                                             aria-hidden="true">
+                                            <path fill="#2D2D2D"
+                                                  fill-rule="evenodd"
+                                                  d="m20 14.929-1.414 1.414L24.243 22l-5.657 5.657L20 29.07 27.071 22 20 14.929z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="CardListItem_textWrapper">
+                                        How do I return something to you?
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="CardListItem_topicItem CardListItem_iconRight"
+                                aria-setsize="6"
+                                aria-posinset="6">
+                                <a href="https://www.asos.com/customer-care/returns-refunds/im-an-international-customer-have-you-received-my-returned-items/"
+                                   data-value="I&#39;m an International customer, have you received my returned items?"
+                                   class="CardListItem_anchor">
+                                    <div class="CardListItem_imageWrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="44"
+                                             height="44"
+                                             aria-hidden="true">
+                                            <path fill="#2D2D2D"
+                                                  fill-rule="evenodd"
+                                                  d="m20 14.929-1.414 1.414L24.243 22l-5.657 5.657L20 29.07 27.071 22 20 14.929z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="CardListItem_textWrapper">
+                                        I'm an International customer, have you received my
+                                        returned items?
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</main>
+<link href="~/Content/Root/CSS/GetInTouch.2242d94fc9ff01d11025.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/chatui.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/main.19edfe33588b1e8d186d.css" rel="stylesheet" />

@@ -1,0 +1,105 @@
+﻿@model FloristManagement.Models.User
+@{
+    ViewBag.Title = "ViewAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "profile";
+}
+<link href="~/Content/Root/CSS/Profile/UserProfile.c42043cb59d8baf28515.legacy.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/Profile/1714.2c368ab9a6729e93.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/Profile/bundle.0e19f55ad1b84771.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/Profile/style.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/Profile/style.css" rel="stylesheet" />
+<main>
+    <div class="xMDeox">
+        <div class="Hvae38" role="main">
+            <div style="display: contents;">
+                <div class="b7wtmP">
+                    <div class="_66hYBa">
+                        <h1 class="SbCTde">Your Profile</h1>
+                    </div>
+                    <div class="R-Gpdg">
+                        @using (Html.BeginForm("UpdateAccount", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="volt8A">
+                                <table class="Zj7UK+">
+                                    <input name="UserID" type="hidden" value="@Model.UserID" />
+                                    <tr>
+                                        <td class="espR83"><label>Tên</label></td>
+                                        <td class="Tmj5Z6">
+                                            <div>
+                                                <div class="W50dp5"><input type="text" placeholder="" class="CMyrTJ" value="@Model.Fullname" name="Fullname"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="espR83"><label>Email</label></td>
+                                        <td class="Tmj5Z6">
+                                            <div>
+                                                <div class="W50dp5"><input type="text" placeholder="abc***gmail.com" class="CMyrTJ" value="@Model.Email" name="Email"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="espR83"><label>Số điện thoại</label></td>
+                                        <td class="Tmj5Z6">
+                                            <div>
+                                                <div class="W50dp5"><input name="PhoneNumber" type="number" placeholder="********68" class="CMyrTJ" value="@Model.PhoneNumber"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="espR83"><label>Address</label></td>
+                                        <td class="Tmj5Z6">
+                                            <div>
+                                                <div class="W50dp5"><input name="Address" type="text" placeholder="" class="CMyrTJ" value="@Model.Address"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="espR83"><label>Image</label></td>
+                                        <td class="Tmj5Z6">
+                                            <div>
+                                                <div class="W50dp5"><input name="ImageFile" type="file" placeholder="" class="CMyrTJ"></div>
+                                            </div>
+                                            <div>
+                                                <img src="@Url.Content(Model.ImagePath)" width="100px" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="espR83"><label></label></td>
+                                        <td class="Tmj5Z6"><button type="submit" class="btn btn-solid-primary btn--m btn--inline" aria-disabled="false">Lưu</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            @*<div class="IQPHvE">
+                                <div class="scvgOW">
+                                    <div class="XWsmVn">
+                                        <div class="LoNm4g" style="background-image: url(&quot;https://down-vn.img.susercontent.com/file/1f5db31738e7468fc16faf96e302aaba&quot;);">
+                                            <img src="@Url.Content(Model.ImagePath)" width="100px" />
+                                        </div>
+                                    </div>
+                                    <input name="ImageFile" class="bMWDYw" type="file" accept=".jpg,.jpeg,.png"><button type="button" class="btn btn-light btn--m btn--inline">Chọn ảnh</button>
+                                    <div class="L4SAGB">
+                                        <div class="SlaeTm">Dụng lượng file tối đa 1 MB</div>
+                                        <div class="SlaeTm">Định dạng:.JPEG, .PNG</div>
+                                    </div>
+                                </div>
+                            </div>*@
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+

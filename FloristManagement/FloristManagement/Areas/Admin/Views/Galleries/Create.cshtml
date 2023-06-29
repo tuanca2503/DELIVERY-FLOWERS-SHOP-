@@ -1,0 +1,41 @@
+﻿@model FloristManagement.Models.Gallery
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+<main class="app-content">
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item active"><a href="#"><b>Create a gallery</b></a></li>
+        </ul>
+        <div id="clock"></div>
+    </div>
+    @using (Html.BeginForm("Create", "Galleries", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="form-group col-md-12">
+            <label class="control-label">Images</label>
+            <div id="myfileupload">
+                <input type="file" id="ImageFiles" name="ImageFiles" multiple onchange="readURL(this);" />
+            </div>
+            <div id="thumbbox">
+                <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
+                <a class="removeimg" href="javascript:"></a>
+            </div>
+            <div id="boxchoice">
+                <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                <p style="clear:both"></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <input class=" form-control col-md-2" type="submit" value="Create" />
+            <hr />
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    }
+</main>
+

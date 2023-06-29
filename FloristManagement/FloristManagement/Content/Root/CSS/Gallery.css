@@ -1,0 +1,407 @@
+﻿#onetrust-consent-sdk #onetrust-pc-sdk,
+#onetrust-consent-sdk #ot-search-cntr,
+#onetrust-consent-sdk #onetrust-pc-sdk .ot-switch.ot-toggle,
+#onetrust-consent-sdk #onetrust-pc-sdk ot-grp-hdr1 .checkbox,
+#onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-title:after, #onetrust-consent-sdk #onetrust-pc-sdk #ot-sel-blk,
+#onetrust-consent-sdk #onetrust-pc-sdk #ot-fltr-cnt,
+#onetrust-consent-sdk #onetrust-pc-sdk #ot-anchor {
+    background-color: #FFFFFF;
+}
+
+    #onetrust-consent-sdk #onetrust-pc-sdk h3,
+    #onetrust-consent-sdk #onetrust-pc-sdk h4,
+    #onetrust-consent-sdk #onetrust-pc-sdk h5,
+    #onetrust-consent-sdk #onetrust-pc-sdk h6,
+    #onetrust-consent-sdk #onetrust-pc-sdk p,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-ven-lst .ot-ven-opts p,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-desc,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-title,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-li-title,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-sel-all-hdr span,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-host-lst .ot-host-info,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-fltr-modal #modal-header,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-checkbox label span,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst #ot-sel-blk p,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst #ot-lst-title h3,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst .back-btn-handler p,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst .ot-ven-name,
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-lst #ot-ven-lst .consent-category,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-leg-btn-container .ot-inactive-leg-btn,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-label-status,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-chkbox label span,
+    #onetrust-consent-sdk #onetrust-pc-sdk #clear-filters-handler,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-optout-signal {
+        color: #696969;
+    }
+
+        #onetrust-consent-sdk #onetrust-pc-sdk .privacy-notice-link,
+        #onetrust-consent-sdk #onetrust-pc-sdk .category-vendors-list-handler,
+        #onetrust-consent-sdk #onetrust-pc-sdk .category-vendors-list-handler + a,
+        #onetrust-consent-sdk #onetrust-pc-sdk .category-host-list-handler,
+        #onetrust-consent-sdk #onetrust-pc-sdk .ot-ven-link,
+        #onetrust-consent-sdk #onetrust-pc-sdk #ot-host-lst .ot-host-name a,
+        #onetrust-consent-sdk #onetrust-pc-sdk #ot-host-lst .ot-acc-hdr .ot-host-expand,
+        #onetrust-consent-sdk #onetrust-pc-sdk #ot-host-lst .ot-host-info a,
+        #onetrust-consent-sdk #onetrust-pc-sdk #ot-pc-content #ot-pc-desc .ot-link-btn,
+        #onetrust-consent-sdk #onetrust-pc-sdk .ot-vnd-serv .ot-vnd-item .ot-vnd-info a,
+        #onetrust-consent-sdk #onetrust-pc-sdk #ot-lst-cnt .ot-vnd-info a {
+            color: #3860BE;
+        }
+
+            #onetrust-consent-sdk #onetrust-pc-sdk .category-vendors-list-handler:hover {
+                text-decoration: underline;
+            }
+
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-acc-grpcntr.ot-acc-txt,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-acc-txt .ot-subgrp-tgl .ot-switch.ot-toggle {
+        background-color: #F8F8F8;
+    }
+
+    #onetrust-consent-sdk #onetrust-pc-sdk #ot-host-lst .ot-host-info,
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-acc-txt .ot-ven-dets {
+        background-color: #F8F8F8;
+    }
+
+    #onetrust-consent-sdk #onetrust-pc-sdk
+    button:not(#clear-filters-handler):not(.ot-close-icon):not(#filter-btn-handler):not(.ot-remove-objection-handler):not(.ot-obj-leg-btn-handler):not([aria-expanded]):not(.ot-link-btn),
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-leg-btn-container .ot-active-leg-btn {
+        background-color: #346E4A;
+        border-color: #346E4A;
+        color: #FFFFFF;
+    }
+
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-active-menu {
+        border-color: #346E4A;
+    }
+
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-leg-btn-container .ot-remove-objection-handler {
+        background-color: transparent;
+        border: 1px solid transparent;
+    }
+
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-leg-btn-container .ot-inactive-leg-btn {
+        background-color: #FFFFFF;
+        color: #78808E;
+        border-color: #78808E;
+    }
+
+    #onetrust-consent-sdk #onetrust-pc-sdk .ot-tgl input:focus + .ot-switch, .ot-switch .ot-switch-nob, .ot-switch .ot-switch-nob:before,
+    #onetrust-pc-sdk .ot-checkbox input[type="checkbox"]:focus + label::before,
+    #onetrust-pc-sdk .ot-chkbox input[type="checkbox"]:focus + label::before {
+        outline-color: #000000;
+        outline-width: 1px;
+    }
+
+#onetrust-pc-sdk .ot-host-item > button:focus, #onetrust-pc-sdk .ot-ven-item > button:focus {
+    border: 1px solid #000000;
+}
+
+#onetrust-consent-sdk #onetrust-pc-sdk *:focus,
+#onetrust-consent-sdk #onetrust-pc-sdk .ot-vlst-cntr > a:focus {
+    outline: 1px solid #000000;
+}
+
+#onetrust-pc-sdk .ot-vlst-cntr .ot-ext-lnk {
+    background-image: url('https://assets.asosservices.com/sitechromepublisher/oneTrust/12.0.0-7e192dba3b9b-3463/consent/908f7fca-dbc5-4b3a-8f6b-ed734de0cb52/3001fe1a-3042-473b-be1d-a1d8ef1e3773/logos/static/ot_external_link.svg');
+}
+
+#onetrust-consent-sdk, #onetrust-banner-sdk, .ot-sdk-show-settings, .onetrust-pc-dark-filter, #onetrust-pc-sdk {
+    display: none !important;
+}
+
+.ot-sdk-cookie-policy {
+    font-family: inherit;
+    font-size: 16px
+}
+
+    .ot-sdk-cookie-policy.otRelFont {
+        font-size: 1rem
+    }
+
+    .ot-sdk-cookie-policy h3, .ot-sdk-cookie-policy h4, .ot-sdk-cookie-policy h6, .ot-sdk-cookie-policy p, .ot-sdk-cookie-policy li, .ot-sdk-cookie-policy a, .ot-sdk-cookie-policy th, .ot-sdk-cookie-policy #cookie-policy-description, .ot-sdk-cookie-policy .ot-sdk-cookie-policy-group, .ot-sdk-cookie-policy #cookie-policy-title {
+        color: dimgray
+    }
+
+    .ot-sdk-cookie-policy #cookie-policy-description {
+        margin-bottom: 1em
+    }
+
+    .ot-sdk-cookie-policy h4 {
+        font-size: 1.2em
+    }
+
+    .ot-sdk-cookie-policy h6 {
+        font-size: 1em;
+        margin-top: 2em
+    }
+
+    .ot-sdk-cookie-policy th {
+        min-width: 75px
+    }
+
+    .ot-sdk-cookie-policy a, .ot-sdk-cookie-policy a:hover {
+        background: #fff
+    }
+
+    .ot-sdk-cookie-policy thead {
+        background-color: #f6f6f4;
+        font-weight: bold
+    }
+
+    .ot-sdk-cookie-policy .ot-mobile-border {
+        display: none
+    }
+
+    .ot-sdk-cookie-policy section {
+        margin-bottom: 2em
+    }
+
+    .ot-sdk-cookie-policy table {
+        border-collapse: inherit
+    }
+
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy {
+    font-family: inherit;
+    font-size: 1rem
+}
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy h3, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy h4, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy h6, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy p, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy li, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy th, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy #cookie-policy-description, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-sdk-cookie-policy-group, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy #cookie-policy-title {
+        color: dimgray
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy #cookie-policy-description {
+        margin-bottom: 1em
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-sdk-subgroup {
+        margin-left: 1.5em
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy #cookie-policy-description, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-sdk-cookie-policy-group-desc, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-table-header, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy span, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy td {
+        font-size: .9em
+    }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy td span, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy td a {
+            font-size: inherit
+        }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-sdk-cookie-policy-group {
+        font-size: 1em;
+        margin-bottom: .6em
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-sdk-cookie-policy-title {
+        margin-bottom: 1.2em
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy > section {
+        margin-bottom: 1em
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy th {
+        min-width: 75px
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a:hover {
+        background: #fff
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy thead {
+        background-color: #f6f6f4;
+        font-weight: bold
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-mobile-border {
+        display: none
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy section {
+        margin-bottom: 2em
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-sdk-subgroup ul li {
+        list-style: disc;
+        margin-left: 1.5em
+    }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-sdk-subgroup ul li h4 {
+            display: inline-block
+        }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table {
+        border-collapse: inherit;
+        margin: auto;
+        border: 1px solid #d7d7d7;
+        border-radius: 5px;
+        border-spacing: initial;
+        width: 100%;
+        overflow: hidden
+    }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table th, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table td {
+            border-bottom: 1px solid #d7d7d7;
+            border-right: 1px solid #d7d7d7
+        }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table tr:last-child td {
+            border-bottom: 0px
+        }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table tr th:last-child, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table tr td:last-child {
+            border-right: 0px
+        }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table .ot-host, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table .ot-cookies-type {
+            width: 25%
+        }
+
+.ot-sdk-cookie-policy[dir=rtl] {
+    text-align: left
+}
+
+#ot-sdk-cookie-policy h3 {
+    font-size: 1.5em
+}
+
+@media only screen and (max-width: 530px) {
+    .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) table, .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) thead, .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) tbody, .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) th, .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) td, .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) tr {
+        display: block
+    }
+
+        .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px
+        }
+
+    .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) tr {
+        margin: 0 0 1em 0
+    }
+
+        .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) tr:nth-child(odd), .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) tr:nth-child(odd) a {
+            background: #f6f6f4
+        }
+
+    .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%
+    }
+
+        .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) td:before {
+            position: absolute;
+            height: 100%;
+            left: 6px;
+            width: 40%;
+            padding-right: 10px
+        }
+
+    .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) .ot-mobile-border {
+        display: inline-block;
+        background-color: #e4e4e4;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        left: 45%;
+        width: 2px
+    }
+
+    .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) td:before {
+        content: attr(data-label);
+        font-weight: bold
+    }
+
+    .ot-sdk-cookie-policy:not(#ot-sdk-cookie-policy-v2) li {
+        word-break: break-word;
+        word-wrap: break-word
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table {
+        overflow: hidden
+    }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table td {
+            border: none;
+            border-bottom: 1px solid #d7d7d7
+        }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy thead, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy tbody, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy th, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy td, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy tr {
+        display: block
+    }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table .ot-host, #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table .ot-cookies-type {
+            width: auto
+        }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy tr {
+        margin: 0 0 1em 0
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy td:before {
+        height: 100%;
+        width: 40%;
+        padding-right: 10px
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy td:before {
+        content: attr(data-label);
+        font-weight: bold
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy li {
+        word-break: break-word;
+        word-wrap: break-word
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        z-index: -9999
+    }
+
+    #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table tr:last-child td {
+        border-bottom: 1px solid #d7d7d7;
+        border-right: 0px
+    }
+
+        #ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table tr:last-child td:last-child {
+            border-bottom: 0px
+        }
+}
+
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy h5,
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy h6,
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy li,
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy p,
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy a,
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy span,
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy td,
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy #cookie-policy-description {
+    color: #2d2d2d;
+}
+
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy th {
+    color: #2d2d2d;
+}
+
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy .ot-sdk-cookie-policy-group {
+    color: #2d2d2d;
+}
+
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy #cookie-policy-title {
+    color: #2d2d2d;
+}
+
+#ot-sdk-cookie-policy-v2.ot-sdk-cookie-policy table th {
+    background-color: #F8F8F8;
+}
+
+#ot-sdk-cookie-policy, #ot-sdk-cookie-policy-v2 {
+    display: none !important;
+}
+
+.ot-floating-button__front {
+    background-image: url('https://assets.asosservices.com/sitechromepublisher/oneTrust/12.0.0-7e192dba3b9b-3463/consent/908f7fca-dbc5-4b3a-8f6b-ed734de0cb52/3001fe1a-3042-473b-be1d-a1d8ef1e3773/logos/static/ot_persistent_cookie_icon.png')
+}

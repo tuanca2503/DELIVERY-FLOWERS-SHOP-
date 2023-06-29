@@ -1,0 +1,246 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<FloristManagement.Models.Bouquet>
+
+@{
+    ViewBag.Title = "Index";
+
+}
+<link href="~/Content/Root/CSS/Gallery.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/250fe7ee7eee0d8d1e26.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/334284cd684b151f43a9.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/8f3091027095f069e831.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/Pagination.css" />
+<style>
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            display: block;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+            text-decoration: none;
+        }
+
+            .pagination a:hover {
+                background-color: #f5f5f5;
+            }
+
+        .pagination .disabled a,
+        .pagination .disabled a:hover {
+            color: #ccc;
+            background-color: #fff;
+            border-color: #ccc;
+            cursor: default;
+        }
+</style>
+<main id="chrome-app-container">
+    <div id="plp">
+        <div>
+            <section id="category-banner-wrapper" class="wrapper_ZDIos">
+                <div class="textWrapper_Ol_lc">
+                    <h1 class="categoryTitle_r3Kaq">All bouquets items</h1>
+                    <div class="categoryDescription_t3uUd">
+                        <div class="button_C0YQW" role="button" tabindex="0">
+                            <div class="container_kZDbL">
+                                <p class="description_JnSzY">
+                                    A beautiful bouquet or a long-lasting flowering plant is a traditional gift for women
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <style>
+                .lab-g {
+                    font-family: futura-pt, Tahoma, Geneva, Verdana, Arial, sans-serif;
+                    font-style: normal;
+                    font-size: 1.0rem;
+                    font-weight: 700;
+                    margin: 0 0 0.288rem;
+                    color: black;
+                    cursor: default;
+                    display: block;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                }
+
+                .M-IG {
+                    color: black;
+                    border: 1px solid #999;
+                    background: transparent;
+                    height: 30px;
+                    width: unset;
+                    font-size: 20px
+                }
+
+                    .M-IG:focus {
+                        background: white;
+                    }
+
+                .li_uumN_ {
+                    width: 100%
+                }
+
+                    .li_uumN_:nth-child(2) select {
+                        width: 30%;
+                        margin: 0px 5px 0px 5px
+                    }
+
+                .M-But-G input {
+                    background-color: #018849;
+                    border: none;
+                    color: #fff;
+                    cursor: pointer;
+                    display: inline-block;
+                    position: relative;
+                    outline: 0;
+                    text-align: center;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    transition: background-color 0.15s linear;
+                    vertical-align: middle;
+                    width: 100%;
+                    font-family: futura-pt, Tahoma, Geneva, Verdana, Arial, sans-serif;
+                    font-style: normal;
+                    font-size: 1.125rem;
+                    font-weight: 700;
+                    padding: 0.75rem;
+                    letter-spacing: 0.125rem;
+                }
+
+                    .M-But-G input:hover {
+                        color: black
+                    }
+            </style>
+            <div class="container_yiEoY wrapper_UjNAa">
+                <div class="container_TILjd">
+                    <div class="stickyHeader_ZpsZR stickyHeader_hasFloor_a5ySR headroom-wrapper" style="height: 116px;">
+                        <div class="headroom headroom--unfixed">
+                            <div role="region" aria-label="Filters" class="horizontalRefinements_qVf1h">
+                                @using (Html.BeginForm("Index", "Bouquet", FormMethod.Get))
+                                {
+                                    <ul class="refinementsList_DASZG" style="display: grid; grid-template-columns: repeat(3,1fr);column-gap:10px">
+
+
+                                        <li class="li_uumN_">
+
+                                            <div class="container_q84zd">
+                                                <label class="lab-g col-md-2">Name</label>
+                                                <input name="searchTerm" type="text" class="button_eZ0Gy M-IG" />
+                                            </div>
+                                        </li>
+
+                                        <li class="li_uumN_">
+                                            <div class="container_q84zd">
+                                                <label class="lab-g label-control" col-md-2>Price</label>
+                                                <select name="minPrice" class="button_eZ0Gy M-IG">
+                                                    <option hidden>From</option>
+                                                    <option>none</option>
+                                                    <option value="0">$ 0 </option>
+                                                    <option value="50">$ 50 </option>
+                                                    <option value="100">$ 100</option>
+                                                    <option value="150">$ 150</option>
+                                                </select>
+                                                <select name="maxPrice" class="button_eZ0Gy M-IG">
+                                                    <option hidden>To</option>
+                                                    <option>none</option>
+                                                    <option value="200">$ 200 </option>
+                                                    <option value="300">$ 300</option>
+                                                    <option value="400">$ 400</option>
+                                                    <option value="500">$ 500</option>
+                                                </select>
+                                            </div>
+                                        </li>
+
+
+                                        <li class="li_uumN_">
+                                            <div class="container_q84zd">
+                                                <label class="lab-g label-control">Occasion</label>
+                                                <select name="occasionID" class="button_eZ0Gy M-IG">
+                                                    <option value="0">All</option>
+                                                    @foreach (var item in new FloristManagement.Mapping.OccasionMapping().listOfOccaions())
+                                                    {
+                                                    <option value="@item.OccasionID" selected>@item.Name</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </li>
+
+
+                                    </ul>
+                                    <div class="container_q84zd M-But-G">
+                                        <input class="btn btn-info " type="submit" value="send" />
+                                    </div>
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultsView_HpeNk">
+                    <div class="content_osdQA">
+                        <div class="results_eRAdS">
+                            <section class="listingPage_HfNlp" data-auto-id="1">
+                                @foreach (var item in Model)
+                                    {
+                                        <article id="product-202679787" class="productTile_U0clN">
+                                            <a class="productLink_KM4PI" href="" aria-labelledby="pta-product-202679787-0 pta-del pta-product-202679787-1 pta-del pta-product-202679787-2 pta-del pta-product-202679787-3 pta-del pta-product-202679787-4 pta-del pta-product-202679787-5">
+                                                <div class="container_ApgHk"><img alt="" class="image_c34TK" sizes="(min-width: 768px) 317px, 238px" src="@Url.Content(item.ImagePath)"></div>
+                                                <div id="pta-product-202679787-0" class="productDescription_sryaw">
+                                                    <div class="overflowFade_zrNEl">
+                                                        <div>
+                                                            <h2><p>@item.Name</p></h2>
+                                                        </div>
+                                                        <div>
+                                                            <a href="/Bouquet/Detail/@item.BouquetID">Order now</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p id="pta-product-202679787-1" aria-hidden="true" aria-label="Price: £50.00" class="container_WYZEU"><span class="originalPrice_SOu7v"><span class="price_CMH3V">$ @item.Price</span></span></p>
+                                                <div id="pta-product-202679787-4" class="productBadge_QoWYX bottomLeftBadge_w7ECI">MORE COLOURS</div>
+                                            </a>
+
+                                        </article>
+                                    }
+                            </section>
+                        </div>
+                        @*  *@
+                        <div class="container_j8XTO">
+                            <div class="pagination-container">
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                            </div>
+                            <progress max="259" value="72" class="progressBar_anIzC" aria-hidden="true"></progress>
+                        </div>
+                    </div>
+                </div>
+                <button class="errorAlert_Eibq2">
+                    <div class="content_K4Yq1">
+                        <div class="message_RfiK9">
+                            <div class="header_ga9p_">Oops!</div>
+                            <div class="details_WeoYr">Sorry, this page is unavailable right now. Tap this message to retry.</div>
+                        </div>
+                    </div>
+                </button>
+                <span class="ariaDelimiter_C_pS8" id="pta-del">;</span>
+            </div>
+            <div class="paginationLinks_VngWb"><a href="">Page 2</a><a href="">Page 3</a><a href="">Page 4</a></div>
+        </div>
+    </div>
+</main>

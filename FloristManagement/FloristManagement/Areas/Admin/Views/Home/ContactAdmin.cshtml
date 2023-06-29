@@ -1,0 +1,293 @@
+﻿
+@{
+    ViewBag.Title = "ContactAdmin";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+}
+
+
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/jquery.signalR-2.4.3.js"></script>
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+    <script type="text/javascript" src="~/Hubs/ChatHub"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @*var chat = $.connection.hub;*@
+            // lưu các session đang nhắn tin với Admin
+            const listUser = [];
+            var chat = $.connection.chatHub;
+            // thêm id để biết admin đang nhắn với user nào
+            chat.client.writeMessage = function (from, msg, to) {
+                if (to !== null && !(listUser.indexOf(from) > 0)) {
+                    listUser.push(from);
+                }
+                var currentTime = new Date().toLocaleTimeString('en-US', {
+                    month: '2-digit',
+                    day: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Ho_Chi_Minh'
+                });
+
+                console.log(listUser);
+                $("#messages").append("<li>" + currentTime + "</li>");
+                $("#messages").append("<span> " + from + ": " + msg + "</span><br>");
+            }
+
+
+
+            $("#adminSubmit").click(function () {
+                // gửi đến tất cả user
+                // chat.server.broadcastMessage($("#txtName").val(), $("#txtInput").val());
+
+                // gửi đến group
+                @* chat.broadcastMessage($("#txtInput").val());*@
+                // mỗi tab nhắn tin để 1 id riêng, rồi truyền vào thay listUser[0]
+                chat.server.sendMessageToGroup(listUser[0], $("#adminInput").val());
+            })
+
+            $.connection.hub.start().then(function () {
+                @*chat.server.adminOnline()*@
+                $("#adminSubmitName").click(function () {
+                    chat.server.adminOnline("ADMIN_CSKH")
+                    $(".message-container").removeClass('hidden')
+                    $(".name-container").addClass('hidden')
+                })
+            }).catch(function (err) { console.log(err) })
+
+        })
+    </script>
+}
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
+<fieldset>
+    <div class="name-container" style="text-align:center">
+        <button class="btn btn-success" id="adminSubmitName">ONLINE</button>
+    </div>
+</fieldset>
+
+@{
+    ViewBag.Title = "Contact";
+}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('#form-contact').style.height = document.querySelector(".Card_card.Card_aside").offsetHeight + "px"
+    })
+</script>
+<link href="~/Content/Root/CSS/GetInTouch.2242d94fc9ff01d11025.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/chatui.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/main.19edfe33588b1e8d186d.css" rel="stylesheet" />
+
+
+<style>
+
+
+    #form-contact {
+        height: 100%;
+        display: block;
+    }
+
+    .mHead-form-contact {
+        height: 60px;
+        width: 100%;
+        background: #2d2d2d;
+    }
+
+    .mBody-form-contact {
+        overflow-y: scroll;
+        height: calc(100% - 15% - 60px);
+        padding: 14px;
+    }
+
+        .mBody-form-contact::-webkit-scrollbar {
+            margin-top: 10px;
+            width: 0px;
+        }
+
+        .mBody-form-contact::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .mBody-form-contact::-webkit-scrollbar-thumb {
+            background: #2d2d2d;
+            height: 5px;
+            border-radius: 20px;
+        }
+
+            .mBody-form-contact::-webkit-scrollbar-thumb:hover {
+                background: rgb(255, 142, 142);
+            }
+
+    .text-box-shop, .text-box-cust {
+        margin-top: 5px;
+    }
+
+        .text-box-shop span, .text-box-cust span {
+            border-radius: 22px;
+            font-size: 16px;
+            display: inline-flex;
+            padding: 12px 16px 12px 16px;
+        }
+
+        .text-box-shop span {
+            background-color: #eeeeee;
+            color: #2d2d2d;
+        }
+
+        .text-box-cust span {
+            background-color: #2d2d2d;
+            color: #ffffff;
+        }
+
+
+
+
+    #customer-box {
+        text-align: right;
+    }
+
+    .mFooter-form-contact {
+        height: 15%;
+        padding: 14px;
+    }
+
+    .footer-main {
+        height: 100%;
+        width: 100%;
+    }
+
+    .msg-info-name {
+        justify-content: flex-start;
+        margin-left: 12px;
+        font-size: 12px;
+    }
+
+    .msg-info-time span {
+        font-size: 11px;
+        margin-left: 12px
+    }
+
+    .footer-main {
+        display: flex;
+        border: 2px solid rgb(238, 238, 238);
+        border-radius: 8px;
+    }
+
+    #area-customer {
+        width: 100%;
+        border: 0px;
+        resize: none;
+        border: none;
+        outline: none;
+        padding-top: 10px
+    }
+
+        #area-customer::placeholder {
+            line-height: 2
+        }
+
+        #area-customer:focus::placeholder {
+            opacity: 0
+        }
+
+        #area-customer::-webkit-scrollbar {
+            width: 0px
+        }
+
+    .d-flex {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .h-100 {
+        height: 100%;
+    }
+
+    .footer-left {
+        width: 90%;
+    }
+
+    .footer-right {
+        width: 10%;
+    }
+
+    .sendButton:hover {
+        cursor: pointer
+    }
+
+    .sendButton {
+        background-size: 100%;
+        height: 24px;
+        width: 24px;
+        background-image: url('https://media-eu2.digital.nuance.com/media/sites/10007081/flash/ASOS_Embedded_MVP/Icon_Send.svg');
+        cursor: default;
+        opacity: 0.6;
+    }
+</style>
+
+
+<main id="chrome-app-container">
+    <div id="react-root">
+        <div class="app_appLayout">
+            <!--  -->
+            <div class="Main_main Main_hasSidebar Main_margin">
+                <div class="Card_card Card_getInTouch">
+                        <div class="mHead-form-contact">
+                        </div>
+                        <!--  -->
+                        <div class="mBody-form-contact">
+                            <!-- chat -->
+                            <div class="agent-bubble-cont" id="shop-box">
+
+                                <div class="bubble-container">
+                                    <agent-bubble>
+                                        <div class="text-box-shop">
+                                            <ul id="messages"></ul>
+                                        </div>
+                                    </agent-bubble>
+                                </div>
+                            </div>                                              
+                        </div>
+                        <!--  -->
+
+
+                        <div class="mFooter-form-contact">
+                            <div class="footer-main">
+
+                                <div class="footer-left h-100 d-flex">
+                                    <div>
+                                        <input id="adminInput" type="text" placeholder="Type a message"
+                                                  aria-label="Type a message"
+                                                  style="color: #2a2f36" />
+                                    </div>
+                                </div>
+
+                                <div class="footer-right h-100 d-flex">
+                                    <div>
+                                        <footer-button type="Send" imgname="Icon_Send.svg" text="Send">
+                                            <div class="send-container footer-button-cont">
+                                                <button id="adminSubmit"  aria-label="Send" value=" " class="sendButton"></button>
+                                            </div>
+                                        </footer-button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--  -->
+                </div>
+            </div>
+            <!--  -->
+        </div>
+    </div>
+</main>
+
+
+

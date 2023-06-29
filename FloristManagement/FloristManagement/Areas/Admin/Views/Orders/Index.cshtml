@@ -1,0 +1,126 @@
+﻿@model IEnumerable<FloristManagement.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayoutPage.cshtml";
+    int i = 1;
+}
+
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- [ breadcrumb ] start -->
+        <main class="app-content">
+            <div class="app-title">
+                <ul class="app-breadcrumb breadcrumb side">
+                    <li class="breadcrumb-item active"><a href="#"><b>List of orders</b></a></li>
+                </ul>
+                <div id="clock"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tile">
+                        <div class="tile-body">
+                            <div class="row element-button">
+                                <div class="col-sm-3">
+                                    <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()">
+                                        <i class="fas fa-print"></i> Print
+                                    </a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a class="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a href="@Url.Action("ExportExcel")" class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)">
+                                        <i class="fas fa-file-pdf"></i>
+                                        Export Excel
+                                    </a>
+                                </div>
+                                <div class="col-sm-3">
+                                    <a class="btn btn-delete btn-sm pdf-file" type="button" title="In" onclick="myFunction(this)">
+                                        <i class="fas fa-file-pdf"></i> Export PDF
+                                    </a>
+                                </div>
+                            </div>
+                            <table class="table">
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PhonenNumber)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DeliveryDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DeliveryAddress)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Payment.PaymentMethod)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.User.Fullname)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TotalPrice)
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th></th>
+                                </tr>
+                               
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.OrderID</td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PhonenNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DeliveryDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DeliveryAddress)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Payment.PaymentMethod)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.User.Fullname)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                                        </td>
+                                        <td>
+                                            @using (Html.BeginForm("UpdateStatus", "Orders",  FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="orderId" value="@item.OrderID"/>
+                                                <div class="form-group">
+                                                    <select class="form-control" id="status" name="status">
+                                                        <option value="Pending" @(item.Status == "Pending" ? "selected" : "")>Pending</option>
+                                                        <option value="In Progress" @(item.Status == "In Progress" ? "selected" : "")>In Progress</option>
+                                                        <option value="Completed" @(item.Status == "Completed" ? "selected" : "")>Completed</option>
+                                                        <option value="Canceled" @(item.Status == "Canceled" ? "selected" : "")>Canceled</option>
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Update</button>
+                                             }
+                                            </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- [ Main Content ] end -->
+    </div>
+</div>
+
+

@@ -1,0 +1,17 @@
+
+.DHidden{display:hidden}
+
+.notice::after {content: "";background-color: #ff0000;width: 6px;height: 6px;position: absolute;top: 20px;right: 10px;border-radius: 100%;}
+
+
+
+
+#flowers-floor,#festival-floor {text-transform: uppercase;}
+
+
+
+
+
+
+
+

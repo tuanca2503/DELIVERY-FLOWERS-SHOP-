@@ -1,0 +1,106 @@
+.app_appLayout {
+  background-color: #eeeeee;
+  max-width: 1302px;
+  margin: 0 auto;
+  flex-direction: column;
+  padding: 0;
+  display: flex;
+  padding-bottom: 16px ;
+}
+p {
+  font-weight: inherit;
+}
+@media all and (min-width: 480px) {
+  .app_appLayout {
+    padding: 0 10px;
+  }
+}
+@media all and (min-width: 720px) {
+  .app_appLayout {
+    flex-flow: row;
+  }
+}
+@media all and (min-width: 1024px) {
+  .app_appLayout {
+    padding: 0 42px;
+  }
+}
+
+#react-root {
+  min-height: 100%;
+}
+
+#react-root * {
+  box-sizing: border-box;
+}
+
+.styles_item-enter {
+  opacity: 0;
+}
+
+.styles_item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.styles_item-exit {
+  opacity: 1;
+}
+
+.styles_item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+input {
+  font-family: futura-pt, sans-serif;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.ErrorBoundary_error {
+  background: white;
+  margin: 16px;
+  padding: 20px 24px;
+  text-align: center;
+  width: 100%;
+}
+.ErrorBoundary_error h1 {
+  font-family: futura-pt, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.6px;
+  font-weight: 900;
+  }
+.ErrorBoundary_error p {
+  font-family: futura-pt, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.4px;
+  font-weight: 400;
+  }
+.ErrorBoundary_error details {
+    text-align: left;
+    line-height: 20px;
+    margin-top: 10px;
+  }
+.ErrorBoundary_error summary {
+    margin-bottom: 10px;
+  }
+.ErrorBoundary_error svg {
+    margin: 0 auto 8px auto;
+  }
+

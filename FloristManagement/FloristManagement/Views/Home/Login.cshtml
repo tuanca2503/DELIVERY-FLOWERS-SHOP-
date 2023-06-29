@@ -1,0 +1,260 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html class="layout-v2" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="~/Content/Root/Icon/logo180x180.png" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Sign in</title>
+    <link href="~/Content/Root/Fonts/FTN45__W.woff2" rel="stylesheet" />
+    <link href="~/Content/Root/Fonts/FTN75__W.woff2" rel="stylesheet" />
+    <link href="~/Content/Root/CSS/bundle.a5916aae0a8c05e6452d.css" rel="stylesheet" />
+</head>
+<body class="full sign-in-page lang-en region-gb" data-state="isExpanded">
+    <div id="content" class="">
+        <!-- logo -->
+        <div id="header">
+            <h1>
+                <a href="" class="home" id="">
+                    <img src="~/Content/Root/Icon/logo180x180.png" height="180" width="180" alt="">
+                </a>
+            </h1>
+        </div>
+        <!-- main -->
+        <main id="main">
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    const b = document.querySelectorAll("#M-form")
+
+                    const a = document.getElementsByClassName("title qa-title");
+                    for (let i = 0; i < a.length; i++) {
+                        a[i].children[0].children[0].addEventListener('click', function () {
+                            removeClassListActive(a)
+                            a[i].classList.add('active')
+
+                            addClassHidden(b)
+                            b[i].classList.remove('hidden')
+
+                        })
+                    }
+                    function removeClassListActive(a) {
+                        for (let i = 0; i < a.length; i++) {
+                            a[i].classList.remove('active');
+                        }
+                    }
+                    function addClassHidden(a) {
+                        for (let i = 0; i < a.length; i++) {
+                            a[i].classList.add('hidden');
+                        }
+                    }
+                    function addAnimation(a) {
+                        for (let i = 0; i < a.length; i++) {
+                            a[i].style.transform = "scale: 0"
+                            a[i].style.trasition = '1s'
+                        }
+                    }
+
+                })
+            </script>
+            <!--  -->
+            <div id="signinContainer" class="container signin-container">
+                <div class="signin-options">
+                    <div class="title qa-title active">
+                        <div class="qa-header" aria-current="page">
+                            <a class="qa-SignIn" href="#signinContainer" id="SignIn">Sign in</a>
+                        </div>
+                    </div>
+                    <div class="_MiddleSO"></div>
+                    <div class="title qa-title">
+                        <div class="qa-header">
+                            <a class="qa-join" href="#signinContainer" id="Join">Join</a>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <section id="Form-Box">
+                    @{
+                        if (!string.IsNullOrEmpty(ViewBag.Message))
+                        {
+                            <div class="unified-info-board">
+                                <div class="alert alert-danger">@ViewBag.Message</div>
+                            </div>
+                        }
+                    }
+
+                    <!--  -->
+                    <div class="form form-login" id="M-form">
+                        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <fieldset>
+                                <div>
+                                    <div class="unified-info">
+                                        <span class="unified-title unified-signin-page-element hidden">Welcome Back</span>
+                                    </div>
+
+                                    <div class="field">
+                                        <label class="qa-email-label" for="EmailAddress" id="EmailLabel">Email address</label>
+                                        <div class="input-wrapper not-unified-signin-page-element" aria-labelledby="EmailLabel">
+                                            <input required name="Email" autocomplete="email" class="qa-email-textbox" data-val="true" data-val-email="Email fail! Please type in your correct email address" data-val-length="Oops, that email address is too long - try again, please" data-val-length-max="255" data-val-required="Oops! You need to type your email here" id="EmailAddress" maxlength="255" type="email" value="">
+                                            <span class="field-validation-valid qa-email-validation" data-valmsg-for="Username" data-valmsg-replace="true" id="UsernameValidator"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <label class="qa-password-label" for="Password" id="PasswordLabel">Password</label>
+                                        <div class="input-wrapper" aria-labelledby="PasswordLabel">
+                                            <input required name="Password" autocomplete="off" class="qa-password-textbox" data-val="true" data-val-length="Hold up, that&#39;s too long. Less than 100 characters please" data-val-length-max="100" data-val-required="Hey, we need a password here" id="Password" name="Password" type="password" value="">
+                                            <span class="field-validation-valid qa-password-validation" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="submit">
+                                    <input data-sitekey="" data-callback="" type="submit" value="Sign in" id="signin" class="g-recaptcha qa-submit adobeTrackedButton" return="false" data-adobe="{&quot;event&quot;: &quot;tracking.identity.signIn&quot; ,&quot;data&quot; :{&quot;action&quot;:&quot;Sign In&quot;,&quot;context&quot;:&quot;Sign In&quot; ,&quot;signupmethod&quot;:&quot;Email&quot;,&quot;recognised&quot;:&quot;&quot;,&quot;socialPlatform&quot;: &quot;&quot;}}" style="margin-top:5px">
+                                </div>
+                                <div class="forgotten-password">
+                                    <a class="qa-forgot-password adobeTrackedButton" data-analytics="alreadyRegisteredForgotPassword" href="" id="forgot-password-link">Forgot password?</a>
+                                </div>
+                            </fieldset>
+                        }
+                    </div>
+                    <!--  -->
+                    <div id="M-form" class="form form-register js-form hidden  ">
+                        <div class="unified-reg-info">
+                            <h2 class="unified-title" style="font-family: futura-pt,Tahoma,Geneva,Verdana,Arial,sans-serif;text-align:center">Welcome</h2>
+                        </div>
+                        @using (Html.BeginForm("Signup", "Home", FormMethod.Post, new { enctype = "multipart/form-data" } ))
+                        {
+                            <fieldset>
+                                <div style="display:grid;">
+
+                                    <div class="field">
+                                        <label class="qa-email-label" for="Email" id="EmailLabel">Email</label>
+                                        <div class="input-wrapper" aria-labelledby="EmailLabel">
+                                            <div class="edit-email-area">
+                                                <input required autocomplete="email" class="qa-email-textbox" data-val="true" data-val-email="Email fail! Please type in your correct email address" data-val-length="Oops, that email address is too long - try again, please" data-val-length-max="255" data-val-required="Oops! You need to type your email here" id="SUEmailAddress" maxlength="255" type="email" name="Email" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="qa-firstname-label" for="FirstName" id="FirstNameLabel">Full name</label>
+                                        <div class="input-wrapper" aria-labelledby="FirstNameLabel">
+                                            <input required autocomplete="given-name" class="qa-firstname-textbox" data-val="true" data-val-length="Erm, this bit needs to be under 100 characters" data-val-length-max="100" data-val-regex="First name must not contain &lt;, >, &amp;, &quot; or ." data-val-regex-pattern="^(?!.*[&lt;>\.&amp;&quot;]).*$" data-val-required="We need your first name – it’s nicer that way" id="FirstName" maxlength="100" name="Fullname" type="text" value="" />
+                                            <span class="field-validation-valid qa-firstname-validation" data-valmsg-for="FullName" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="qa-firstname-label" for="FirstName" id="PhoneLabel">PhoneNumber</label>
+                                        <div class="input-wrapper" aria-labelledby="FirstNameLabel">
+                                            <input required autocomplete="given-name" class="qa-firstname-textbox" data-val="true" data-val-length="Erm, this bit needs to be under 100 characters" data-val-length-max="100" data-val-regex="First name must not contain &lt;, >, &amp;, &quot; or ." data-val-regex-pattern="^(?!.*[&lt;>\.&amp;&quot;]).*$" data-val-required="We need your first name – it’s nicer that way" id="FirstName" maxlength="100" name="PhoneNumber" type="text" value="" />
+                                            <span class="field-validation-valid qa-firstname-validation" data-valmsg-for="PhoneNumber" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="qa-firstname-label" for="FirstName" id="AddressLabel">Address</label>
+                                        <div class="input-wrapper" aria-labelledby="FirstNameLabel">
+                                            <input required autocomplete="given-name" class="qa-firstname-textbox" data-val="true" data-val-length="Erm, this bit needs to be under 100 characters" data-val-length-max="100" data-val-regex="First name must not contain &lt;, >, &amp;, &quot; or ." data-val-regex-pattern="^(?!.*[&lt;>\.&amp;&quot;]).*$" data-val-required="We need your first name – it’s nicer that way" id="FirstName" maxlength="100" name="Address" type="text" value="" />
+                                            <span class="field-validation-valid qa-firstname-validation" data-valmsg-for="Address" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="qa-firstname-label" for="FirstName" id="FirstNameLabel">Image</label>
+                                        <div class="input-wrapper" aria-labelledby="FirstNameLabel">
+                                            <input required autocomplete="given-name" class="qa-firstname-textbox" data-val="true" data-val-length="Erm, this bit needs to be under 100 characters" data-val-length-max="100" data-val-regex="First name must not contain &lt;, >, &amp;, &quot; or ." data-val-regex-pattern="^(?!.*[&lt;>\.&amp;&quot;]).*$" data-val-required="We need your first name – it’s nicer that way" id="FirstName" maxlength="100" name="ImageFile" type="file" value="" />
+                                            <span class="field-validation-valid qa-firstname-validation" data-valmsg-for="Address" data-valmsg-replace="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="field">
+                                        <label class="qa-password-label" for="Password" id="PasswordLabel">Password</label>
+                                        <div class="input-wrapper" aria-labelledby="PasswordLabel">
+                                            <input required aria-describedby="PasswordHint" autocomplete="off" class="qa-password-textbox" data-val="true" data-val-length="Hold up, that&#39;s too long. Less than 100 characters please" data-val-length-max="100" data-val-minlength="Erm, you need 10 or more characters" data-val-minlength-min="10" data-val-required="Hey, we need a password here" id="SUPassword" name="Password" type="password" value="" />
+                                            <button id="registration-show-me" class="reveal hidden qa-reveal" type="button" role="button" aria-label="Show me">Show</button>
+                                            <button id="registration-hide-me" class="hide hidden qa-hide" type="button" role="button">Hide</button>
+                                            <span class="field-validation-valid qa-password-validation" data-valmsg-for="Password" data-valmsg-replace="true" id="passwordValidationMessage"></span>
+                                        </div>
+                                        <span class="hint qa-password-hint" id="PasswordHint">Must be 10 or more characters</span>
+                                    </div>
+                                    <div class="submit">
+                                        <input type="submit"
+                                               data-sitekey=""
+                                               data-callback=""
+                                               return="false"
+                                               value="Join Now"
+                                               id="register"
+                                               class="g-recaptcha qa-submit qa-css3-transition-finished"
+                                               aria-label="Join Now" />
+
+                                        <input id="submitting" name="submitting" type="hidden" value="Submitting..." />
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        }
+                    </div>
+                </section>
+                @*  *@
+                <!--  -->
+                <div class="info info-centre">
+                    <div class="info-centre unified-info-center">
+                        <h2 class="unified-social-title"><span>Or sign in with...</span></h2>
+                    </div>
+                    <div class="unified-info">
+                        <h2 class="unified-social-subtitle">Choose a social option to sign in or to join</h2>
+                    </div>
+                    <div>
+                        <div class="options three-buttons ">
+                            <div id="social-links-container" class="social-links-container social-buttons-icon-with-text">
+                                <ul id="social-signin-list" style="list-style-type: none">
+                                    <li class="social-register">
+                                        <a href="" id="signup-google" data-analytics="signInUsingSocial" data-analytics-social="google" class="social-link gplus">
+                                            <div class="connect google qa-sign-up-with-google">
+                                                <div class="icon qa-sign-up-with-google" role="img" aria-label="google"></div>
+                                                <div class="text"><span>Google</span></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="social-register">
+                                        <a href="" id="signup-apple" data-analytics="signInUsingSocial" data-analytics-social="apple" class="social-link apple">
+                                            <div class="connect apple qa-sign-up-with-apple">
+                                                <div class="icon qa-sign-up-with-apple" role="img" aria-label="apple"></div>
+                                                <div class="text"><span>Apple</span></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="social-register">
+                                        <a href="" id="signup-facebook" data-analytics="signInUsingSocial" data-analytics-social="facebook" class="social-link facebook">
+                                            <div class="connect facebook qa-sign-up-with-facebook">
+                                                <div class="icon qa-sign-up-with-facebook" role="img" aria-label="facebook"></div>
+                                                <div class="text"><span>Facebook</span></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="twitter-gone MTop10">
+                                <a href="">Where has Twitter Gone?</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--  -->
+            <!--  -->
+        </main>
+        <!--  -->
+    </div>
+    <!--  -->
+    <div class="terms">
+        <label>
+            <a target="_blank" href="" id="privacy-policy" class="qa-privacypolicy-link" rel="noopener">Privacy Policy</a> | <a href="" id="terms-and-conditions" class="qa-tandc-link" target="_blank" rel="noopener">Terms and Conditions</a>
+        </label>
+    </div>
+</body>
+</html>

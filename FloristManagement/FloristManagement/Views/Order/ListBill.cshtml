@@ -1,0 +1,124 @@
+﻿@model IEnumerable<FloristManagement.Models.Order>
+
+@{
+    ViewBag.Title = "ListBill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Content/Root/CSS/showBill/style.css" rel="stylesheet" />
+    <link href="~/Content/Root/CSS/showBill/css.css" rel="stylesheet" />
+    <link href="~/Content/Root/CSS/showBill/font-awesome.min.css" rel="stylesheet" />
+    int i = 1;
+}
+
+<div role="region" aria-label="Filters" class="horizontalRefinements_qVf1h">
+    @using (Html.BeginForm("ListBill", "Order", FormMethod.Get))
+    {
+        <ul class="refinementsList_DASZG" style="display: grid; grid-template-columns: repeat(3,1fr);column-gap:10px">
+
+
+            <li class="li_uumN_">
+                <div class="container_q84zd">
+                    <label class="lab-g col-md-2">Name</label>
+                    <input name="searchTerm" type="text" class="button_eZ0Gy M-IG" />
+                </div>
+            </li>
+            <li class="li_uumN_">
+                <input class="btn btn-info " type="submit" value="send" />
+            </li>
+
+        </ul>
+
+        <p>
+            You have @Session["orderCount"] orders
+        </p>
+    }
+
+</div>
+<form>
+</form>
+<table class="table table-hover">
+    <caption> List of orders </caption>
+    <tr>
+        <th>No.</th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhonenNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.PaymentMethod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Fullname)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <tr><td colspan="9">@ViewBag.Message</td></tr>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @(i++)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhonenNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryAddress)
+                </td>
+                <td>
+                    @if (item.Status == "Pending")
+                    {
+                        <button style="width:100px" type="button" class="btn btn-secondary">Pending</button>
+                    }
+                    @if (item.Status == "In Progress")
+                    {
+                        <button style="width:100px" type="button" class="btn btn-primary">In Progress</button>
+                    }
+                    @if (item.Status == "Completed")
+                    {
+                        <button style="width:100px" type="button" class="btn btn-success">Completed</button>
+                    }
+                    @if (item.Status == "Canceled")
+                    {
+                        <button style="width:100px" type="button" class="btn btn-danger">Canceled</button>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payment.PaymentMethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Fullname)
+                </td>
+                <td>
+                    @Html.ActionLink("View Bill", "ViewBill", new { orderId = item.OrderID })
+                </td>
+            </tr>
+        }
+
+    }
+
+</table>
+

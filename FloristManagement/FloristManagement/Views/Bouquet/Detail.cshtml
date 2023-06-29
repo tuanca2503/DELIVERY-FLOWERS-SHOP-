@@ -1,0 +1,336 @@
+﻿@model FloristManagement.Models.Bouquet
+@{
+    ViewBag.Title = "Index" ?? "";
+}
+
+@*  *@
+<link href="~/Content/Root/CSS/Details.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/Product.Page.Web.a75f709a.css" rel="stylesheet" />
+<!--  -->
+<link href="~/Content/Root/CSS/critical.a3056c5e452a46614948.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/productpage.b6a8636c0b2e98b018f7.defer.css" rel="stylesheet" />
+
+<!--  -->
+<div id="chrome-breadcrumb"></div>
+<!-- Main -->
+<main id="chrome-app-container">
+    <div class="asos-product single-product pg-in-stock" id="asos-product" style="display:flex">
+        <section id="core-product" class="core-product-container">
+            <div class="layout-width">
+                <div id="gallery-content" class="gallery-content-wrapper">
+                    <div class="product-gallery"
+                         role="region"
+                         data-bind='attr: {"aria-label": state.resources.pdp_media_gallery_label }, component: { name: "product-gallery", params: { state: state,  data: { product: product, rootElement: $element, id: product.id, images: product.images, media: product.media, playerParams: { scene7: { imageServer: "https://images.asos-media.com", videoServer: "https://video.asos-media.com" }}}}}'
+                         aria-label="Product Gallery">
+                        <div id="product-gallery"
+                             class="product-carousel"
+                             role="region"
+                             tabindex="-1"
+                             data-bind="
+                           attr: {
+                           &#39;aria-label&#39;: galleryText.carouselLabel,
+                           &#39;id&#39;: productGalleryId
+                           }"
+                             aria-label="Product carousel">
+                            <img height="100%" src="@Url.Content(Model.ImagePath)" />
+                        </div>
+                        <!-- ko if: isMobile--><!-- /ko -->
+                    </div>
+                </div>
+                <div class="layout-aside">
+                    <div id="pdp-react-critical-app">
+                        <h1 class="jcdpl">@Model.Name</h1>
+                        <div class="a0j7k" data-testid="product-price">
+                            <span class="ky6t2" data-testid="price-screenreader-only-text"></span><span aria-hidden="true" data-testid="current-price" class="MwTOW">$@Model.Price</span>
+                        </div>
+                        <div id="product-promo" data-testid="product-promo" class="Iutj6"></div>
+                        <div id="product-promo-default" data-testid="product-promo-default" class="Iutj6 VXLsc"></div>
+                        <div data-testid="productColour" class="L3V0U">
+                            <h2 class="iXWkL">UNIT:</h2>
+                            <p class="aKxaq">Bouquet</p>
+                        </div>
+                    </div>
+                    <div id="aside-below-price">
+                        <div id="product-colour"
+                             data-bind='component:{
+                           name: "product-colour",
+                           params: {
+                           useShortSelectColourLabel: false,
+                           state: state,
+                           data: product,
+                           hideOnOutOfStock : true,
+                           context: "main",
+                           selectorIndex: 0}
+                           }'>
+                            <!-- ko if: render && (colourDropdownVisible() || isMixAndMatch) --><!-- /ko -->
+                        </div>
+                        <div class="component fit-analytics"
+                             data-bind='component: {
+                           name: "fit-analytics",
+                           params: {
+                           state: state,
+                           data: product
+                           }
+                           }'>
+                            <div id="product-size"
+                                 data-bind='component:{
+                              name: "product-size",
+                              params: {
+                              hideLabels: false,
+                              hideLowInStock: false,
+                              showSizeGuide: true,
+                              state: state,
+                              data: product,
+                              useFitAnalytics: true,
+                              hideOnOutOfStock : true,
+                              context: "main",
+                              selectorIndex: 0}
+                              }'>
+                                <!-- ko if: render -->
+                                <section>
+                                    <div class="colour-size size-component">
+                                        <div class="size-section" data-bind="visible: sizeSectionVisible()" style="display: none;">
+                                            <div style="display: table; width: 100%">
+                                                <label for="main-size-select-0"
+                                                       style="display: table-cell; vertical-align: bottom"
+                                                       data-bind="
+                                             text: sizeLabel,
+                                             visible: !hideLabels,
+                                             disable: isDisabled,
+                                             attr: {
+                                             &#39;for&#39;: sizeSelectorId
+                                             }">
+                                                    SIZE:
+                                                </label>
+                                                <div style="display: table-cell; vertical-align: top; width: 100%">
+                                                    <!-- ko if: isOneSize --><!-- /ko -->
+                                                    <!-- ko if: !showFitAnalyticsSection() -->
+                                                    <div data-testid="size-guide"
+                                                         class="size-guide"
+                                                         style="float: right;"
+                                                         data-bind='component: { name: "size-guide", params: { sizeGuideOpened: sizeGuideOpened, dictionary: sizeGuideDictionary , url: sizeGuideLink, visible: state.showSizeGuide, id:id}}'>
+                                                        <!-- ko if: render() --><!-- /ko -->
+                                                    </div>
+                                                    <!-- /ko -->
+                                                    <!-- ko if: showFitAnalyticsSection() --><!-- /ko -->
+                                                </div>
+                                            </div>
+                                            <!-- ko if: !isOneSize -->
+                                            <span class="product-size" data-bind="visible: sizeLabelVisible(), text: selectedSizeLabel(), css: { disabled: isDisabled }" style="display: none;">No Size</span>
+                                            <!-- /ko -->
+                                            <div class="colour-size-select"
+                                                 data-testid="colour-size-select"
+                                                 data-bind="visible: sizeDropdownVisible(), markAndMeasure: &#39;pdp:size_selector_interactive&#39;"
+                                                 style="display: none;">
+                                                <select id="main-size-select-0"
+                                                        data-id="sizeSelect"
+                                                        data-bind="options: variants,
+                                             optionsAfterRender: disableSizeIfOutOfStock,
+                                             optionsText: &#39;Size&#39;,
+                                             optionsCaption: selectSizeText,
+                                             value: size,
+                                             disable: isDisabled || sizeDropdownDisabled(),
+                                             css:{ required : noSizeSelected() },
+                                             attr: {
+                                             &#39;id&#39;: sizeSelectorId,
+                                             &#39;aria-label&#39;: selectSizeText,
+                                             &#39;aria-describedby&#39;: noSizeSelected() ? &#39;selectSizeError&#39; : null,
+                                             &#39;aria-invalid&#39;: noSizeSelected()
+                                             }"
+                                                        aria-label="Please select">
+                                                    <option value="">Please select</option>
+                                                    <option value="">No Size</option>
+                                                </select>
+                                                <!-- ko if: noSizeSelected() --><!-- /ko -->
+                                            </div>
+                                        </div>
+                                        <div class="grid-row low-in-stock" data-testid="lowInStock" data-bind="visible: isLowInStock() &amp;&amp; !hideLowInStock" style="display: none;">
+                                            <span class="clock"></span><span data-bind="text:lowInStockText">LOW IN STOCK</span>
+                                        </div>
+                                    </div>
+                                </section>
+                                <!-- /ko -->
+                            </div>
+                            @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                            {
+                                <div class="aside-action">
+                                    <input type="number" step="1" min="1" name="quantity" />Quantity
+                                    <input type="hidden" name="bouquetId"  value="@Convert.ToInt32(Model.BouquetID)"/>
+                                </div>
+                                <div class="aside-action">
+                                    <div id="product-add"
+                                         data-bind='component:{name: "add-item",
+                                 params:{
+                                 productId: product.id,
+                                 productImage : product.images[0].url,
+                                 scrollToTop: true,
+                                 state: state,
+                                 initiator : "main"
+                                 }}'>
+                                        <div class="add-item" data-bind="visible: isVisible">
+                                            <div class="is-add-item-saving" data-bind="visible: isBusy" style="display: none;"></div>
+                                            <span class="aria-live" role="status" aria-live="polite" data-bind="{ text: ariaLiveText }"></span>
+
+                                            <button data-bind=""
+                                                    data-testid="add-button"
+                                                    id="product-add-button"
+                                                    aria-label="Add to bag">
+                                                <span class="product-tick" data-bind="visible: showProductTick" style="display: none;"></span>
+                                                <span data-bind="text: buttonText">Add to bag</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ko if : isInStock -->
+                                    <!-- /ko -->
+                                    <div class="add-item-error error-message" data-bind="visible: state.showAddToBagError, html: state.addToBagErrorMessage" style="display: none"></div>
+                                </div>
+                            }
+                                <div id="delivery-and-returns-portal"
+                                     data-bind="template: { afterRender: function() { window.asos.pdp.deliveryAndReturnsPortalReady = true; window.asos.eventBus.emit(&#39;deliveryAndReturnsPortalReady&#39;); } }">
+                                    <div class="GzUz_" data-testid="deliveryAndReturns__container">
+                                        <div data-testid="deliveryAndReturns__freeDelivery" class="zTuDk p1AXC" aria-live="polite">
+                                            <span class="a36ze"><span class="DDQgD product-delivery-van"></span></span>Free Delivery.
+                                        </div>
+                                        <div data-testid="deliveryAndReturns__terms" class="zTuDk aHXob _smHX">
+                                            <span>
+                                                Ts&amp;Cs apply.
+                                                <a data-testid="deliveryAndReturns__termsLink"
+                                                   href=""
+                                                   target="_blank"
+                                                   aria-label="More delivery info. Opens in a new window."
+                                                   rel="noreferrer">
+                                                    <span class="jWCNS" aria-hidden="true">More delivery info<span class="DDQgD product-new-page-small"></span></span>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var a = document.getElementsByClassName("MButtonPlus")
+                                for (var i = 0; i < a.length; i++) {
+                                    a[i].addEventListener('click', function () {
+                                        if (this.parentElement.children[1].classList.value.includes("MVisiVi-HeiUn")) {
+                                            this.parentElement.children[1].classList.add("MVisiHi-Hei0");
+                                            this.parentElement.children[1].classList.remove("MVisiVi-HeiUn");
+                                        } else {
+                                            this.parentElement.children[1].classList.remove("MVisiHi-Hei0");
+                                            this.parentElement.children[1].classList.add("MVisiVi-HeiUn");
+                                        }
+                                    })
+                                }
+                            })
+
+                    </script>
+                    <div id="pdp-ssr-product-description">
+                        <div class="PKNvT" data-reactroot="">
+                            <ul class="">
+                                <li class="accordion-module_item__2SdMy">
+                                    <div class="accordion-item-module_open__2dfDL" style="--accordion-animation-time:300ms">
+                                        <h2 class="london3 styles-module_typographyHeader__2nZaL MButtonPlus accordion-item-module_title__1GlIy" data-testid="heading">
+                                            <button class="accordion-item-module_titleBtn__1AJMd" aria-expanded="true" aria-controls="productDescriptionDetails">Product Details</button>
+                                        </h2>
+                                        <div class="accordion-item-module_contentWrapper__h3KoR MVisiVi-HeiUn" id="productDescriptionDetails" data-testid="productDescriptionDetails">
+                                            <div class="accordion-item-module_content__2cDKX">
+                                                <div class="F_yfF">
+                                                    <p class="Jk9Oz">@Model.Description</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-module_item__2SdMy">
+                                    <div class="" style="--accordion-animation-time:300ms">
+                                        <h2 class="london3 MButtonPlus styles-module_typographyHeader__2nZaL accordion-item-module_title__1GlIy" data-testid="heading">
+                                            <button class="accordion-item-module_titleBtn__1AJMd" aria-expanded="false" aria-controls="productDescriptionBrand">Brand</button>
+                                        </h2>
+                                        <div class="MVisiHi-Hei0 accordion-item-module_contentWrapper__h3KoR" id="productDescriptionBrand" data-testid="productDescriptionBrand">
+                                            <div class="accordion-item-module_content__2cDKX">
+                                                <div class="F_yfF">
+                                                    By <a href=""><strong>@Model.Brand</strong></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="accordion-module_item__2SdMy">
+                                    <div class="" style="--accordion-animation-time:300ms">
+                                        <h2 class="london3 MButtonPlus styles-module_typographyHeader__2nZaL accordion-item-module_title__1GlIy" data-testid="heading">
+                                            <button class="accordion-item-module_titleBtn__1AJMd" aria-expanded="false" aria-controls="productDescriptionBrand">Introduction</button>
+                                        </h2>
+                                        <div class="MVisiHi-Hei0 accordion-item-module_contentWrapper__h3KoR" id="productDescriptionBrand" data-testid="productDescriptionBrand">
+                                            <div class="accordion-item-module_content__2cDKX">
+                                                <div class="F_yfF">
+                                                    Flowers are an essential part of nature's beauty and have been appreciated for thousands of years by people all over the world. They come in a wide variety of colors, shapes, and sizes and are often used to express emotions and convey messages.
+
+                                                    The origin of flowers can be traced back to more than 140 million years ago when they first appeared on the earth. They evolved from simple green plants to complex, colorful structures that we see today. They have played an important role in the evolution of insects, birds, and other animals, as they use flowers for food, shelter, and pollination.
+
+                                                    Flowers are also known for their diverse range of colors, which are often associated with different meanings and emotions. For example, red is commonly associated with love and passion, while yellow is associated with happiness and friendship. Different cultures have different meanings associated with flower colors, and they are often used to express feelings, convey messages, and set the tone for special occasions.
+
+                                                    Overall, flowers are a beautiful and essential part of nature that bring joy and happiness to people all over the world. Their colors and meanings make them a powerful tool for self-expression and communication, and their origin and evolution are a testament to the diversity and beauty of the natural world.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="ingredients-button" class="ingredients-button-container" data-bind='component: { name: "ingredients-button", params: {state: state, data: product}}'>
+                        <!-- ko if: showIngredientsButton --><!-- /ko -->
+                    </div>
+                    <div id="size-helper" class="size-helper-container" data-bind='component: { name: "size-helper", params: {state: state, data: product}}'></div>
+                    <div class="stock-price-retry" id="aside-content-retry">
+                        <div data-bind='component: { name: "stock-price-retry", params: {state: state }}'>
+                            <!-- ko if : state.showStockPriceRetry --><!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="pdp-react-app" style="clear: both">
+        <div aria-live="polite" role="status" class="lKX8b"></div>
+        <div id="mightLike" class="QqXWv">
+            <section class="wvnna" id="mightLikeContainer" aria-label="You Might Also Like Grid">
+                <header class="S4fIZ">
+                    <h2 id="mightLikeTitle" class="nnYzW">YOU MIGHT ALSO LIKE</h2>
+                </header>
+                <section data-testid="mightLikeGrid">
+                    <div class="xibkZ">
+                        <ul class="G4N4r">
+                            @foreach (var item in new FloristManagement.Mapping.BouquetMappingcs().listOfSameOccaionBouquets(Model.OccasionID, Model.BouquetID))
+                            {
+                                <li class="SuUpL">
+                                    <div class="YV2UQ" role="group">
+                                        <a href="/Bouquet/Detail/@item.BouquetID"
+                                           class="Usg4d"
+                                           aria-label="ASOS DESIGN visor wrap sunglasses in silver with mirror lens . £13.00 ">
+                                            <div class="RYzPg">
+                                                <img class="koNJl"
+                                                     height="100%"
+                                                     src="@Url.Content(item.ImagePath)"
+                                                     alt="ASOS DESIGN visor wrap sunglasses in silver with mirror lens "
+                                                     aria-hidden="true" />
+                                            </div>
+                                            <div class="ZCg8J">
+                                                <span class="eS10x"><span aria-hidden="true" data-testid="current-price" class="Z8aEX">$@item.Price</span></span>
+                                            </div>
+                                            <h3 class="ettDN MMaV5">@item.Name</h3>
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </section>
+            </section>
+        </div>
+
+
+    </div>
+</main>
+<!-- End Main -->

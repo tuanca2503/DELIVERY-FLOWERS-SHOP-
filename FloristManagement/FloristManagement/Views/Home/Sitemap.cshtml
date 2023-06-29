@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Sitemap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+}
+
+<link href="~/Content/Root/CSS/sitemap/styles.css" rel="stylesheet" />
+<div id="chrome-main-content">
+    <div class="chrome-main-content--accessible">
+        <div id="chrome-welcome-mat"></div>
+        <div id="chrome-header">
+
+        </div>
+        <div id="chrome-breadcrumb">
+            <div><nav aria-label="breadcrumbs" class="_1MMuO3r"></nav></div>
+        </div>
+        <main id="chrome-app-container">
+            <div id="react-root">
+                <div class="app_appLayout">
+                    <div class="container">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="list-group-item"><a href="@Url.Action("About", "Home")">About Us</a></li>
+                            <li class="list-group-item"><a href="@Url.Action("Index", "Gallery")">Gallery</a></li>
+                            <li class="list-group-item"><a href="@Url.Action("Blog", "Home")">Blog</a></li>
+                            <li class="list-group-item"><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                            <li class="list-group-item">
+                                <a data-toggle="collapse" href="#accountSubMenu" role="button" aria-expanded="false" aria-controls="accountSubMenu">My Account</a>
+                                <div class="collapse" id="accountSubMenu">
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><a href="@Url.Action("ViewAccount", "Account")">View Information</a></li>
+                                        <li class="list-group-item"><a href="@Url.Action("ListBill", "Order")">My Orders</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="list-group-item"><a href="@Url.Action("Login", "Home")">Login</a></li>
+                            <li class="list-group-item"><a href="@Url.Action("Login", "Home")">Sign Up</a></li>
+                        </ul>
+                    </div>
+
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

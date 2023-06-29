@@ -1,0 +1,123 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<FloristManagement.Models.Gallery>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/Root/CSS/Gallery.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/250fe7ee7eee0d8d1e26.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/334284cd684b151f43a9.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/8f3091027095f069e831.css" rel="stylesheet" />
+<link href="~/Content/Root/CSS/Pagination.css" />
+<style>
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        padding: 0;
+    }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination a {
+            display: block;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+            text-decoration: none;
+        }
+
+            .pagination a:hover {
+                background-color: #f5f5f5;
+            }
+
+        .pagination .disabled a,
+        .pagination .disabled a:hover {
+            color: #ccc;
+            background-color: #fff;
+            border-color: #ccc;
+            cursor: default;
+        }
+</style>
+<main id="chrome-app-container">
+    <div id="plp">
+        <div>
+            <section id="category-banner-wrapper" class="wrapper_ZDIos">
+                <div class="textWrapper_Ol_lc">
+                    <h1 class="categoryTitle_r3Kaq">All flower galleries</h1>
+                    <div class="categoryDescription_t3uUd">
+                        <div class="button_C0YQW" role="button" tabindex="0">
+                            <div class="container_kZDbL">
+                                <p class="description_JnSzY">
+                                    A beautiful flower or a long-lasting flowering plant is a traditional gift for women
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var a = document.getElementsByClassName("button_eZ0Gy")
+                    var b = document.getElementById("chrome-app-container")
+                    for (var i = 0; i < a.length; i++) {
+                        a[i].addEventListener('click', function () {
+                            RemoveAllClassOpen(a);
+                            RemoveAllAttributeOpen(a);
+                            this.setAttribute('aria-expanded', 'true');
+                            this.parentElement.children[1].classList.add("collapsibleMenu__open_EWBhZ")
+
+                            this.parentElement.children[1].addEventListener("mouseleave", function () {
+                                this.classList.remove("collapsibleMenu__open_EWBhZ")
+                                RemoveAllAttributeOpen(a);
+
+                            });
+                        })
+                    }
+                    function RemoveAllAttributeOpen(a) {
+                        for (var i = 0; i < a.length; i++) {
+                            a[i].setAttribute('aria-expanded', 'false');
+                        }
+
+                    }
+
+                    function RemoveAllClassOpen(a) {
+                        for (var i = 0; i < a.length; i++) {
+                            a[i].parentElement.children[1].classList.remove("collapsibleMenu__open_EWBhZ");
+                        }
+                    }
+                })
+
+            </script>
+            <section class="mu-section  no-padding-desktop no-padding-mobile" style="">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        <li class="feature">
+                            <a class="feature__link" href="/Bouquet/Index" target="_self" data-analytics-id="row-1-wwgbl-holidayaccessoriesandswim-nlaltkingsday-mulink">
+                                <div class="feature__media">
+                                    <div class="feature__image">
+                                        <img width="100%" height="100%" src="@Url.Content(item.ImagePath)" alt="" class="lazy-loaded">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                    }
+                </ul>
+            </section>
+            <div class="pagination-container">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
+    </div>
+</main>

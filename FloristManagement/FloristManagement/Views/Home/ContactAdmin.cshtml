@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "ContactAdmin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ContactAdmin</h2>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/jquery.signalR-2.4.3.js"></script>
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+    <script type="text/javascript" src="Hubs/ChatHub"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            @*var chat = $.connection.hub;*@
+            // lưu các session đang nhắn tin với Admin
+            const listUser = [];
+            var chat = $.connection.chatHub;
+            // thêm id để biết admin đang nhắn với user nào
+            chat.client.writeMessage = function (from, msg, to) {
+                if (to !== null && !(listUser.indexOf(from) > 0)) {
+                    listUser.push(from);
+                }
+                console.log(listUser);
+                $("#messages").append("<li> Tin nhắn gửi cho: [" + to + "], gửi từ session: [" + from + "], với message: [" + msg + "]</li>");
+            }
+
+            // call đến ChatHub BroadcastMessage() -> call đến writeMessage()
+            @*$("#buttonSubmit").click(function () {
+                // gửi đến tất cả user
+                // chat.server.broadcastMessage($("#txtName").val(), $("#txtInput").val());
+
+                // gửi đến group
+                // check user đăng nhập || Ẩn danh
+                if (!userJoinGroup) {
+                    userJoinGroup = true;
+                    chat.server.joinGroup();
+                } else {
+                    chat.server.sendMessageToGroup($("#txtInput").val());
+                }
+            })*@
+
+            $("#adminSubmit").click(function () {
+                // gửi đến tất cả user
+                // chat.server.broadcastMessage($("#txtName").val(), $("#txtInput").val());
+
+                // gửi đến group
+                @* chat.broadcastMessage($("#txtInput").val());*@
+                // mỗi tab nhắn tin để 1 id riêng, rồi truyền vào thay listUser[0]
+                chat.server.sendMessageToGroup(listUser[0], $("#adminInput").val());
+            })
+
+            $.connection.hub.start().then(function () {
+                @*chat.server.adminOnline()*@
+                $("#adminSubmitName").click(function () {
+                    chat.server.adminOnline("ADMIN_CSKH")
+                    $(".message-container").removeClass('hidden')
+                    $(".name-container").addClass('hidden')
+                })
+            }).catch(function (err) { console.log(err) })
+
+        })
+    </script>
+}
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+<h2>Index</h2>
+
+<fieldset>
+    <legend>SignalR Demo</legend>
+    <div class="name-container">
+        <button id="adminSubmitName">ONLINE</button>
+    </div>
+
+    @*<label for="txtInput">Chat Message</label>
+        <input id="txtInput" type="text" />
+        <button id="buttonSubmit">Submit</button>*@
+
+    <div class="hidden message-container">
+        <label for="adminInput">Admin Chat Message</label>
+        <input id="adminInput" type="text" />
+        <button id="adminSubmit">Admin Submit</button>
+    </div>
+    <fieldset>
+        <legend>Message</legend>
+        <ul id="messages"></ul>
+    </fieldset>
+</fieldset>
